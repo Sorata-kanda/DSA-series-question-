@@ -399,20 +399,59 @@ using namespace std;
 //inversted piramid
 
 
-int main(){
-    int n=4;
-    for(int i=1; i<=n; i++){
+// int main(){
+//     int n=4;
+//     for(int i=1; i<=n; i++){
         
     
-        for(int k=0; k<n-i; k++){
-            cout<<" ";
-        }
-        for(int j=1; j<=i;j++){
-            cout<<j;
-        }
-        for(int j=1; j<i;j++){
-            cout<<j;
-        }
-        cout<<endl;
-    }    
-}
+//         for(int k=0; k<n-i; k++){
+//             cout<<" ";
+//         }
+//         for(int j=1; j<=i;j++){
+//             cout<<j;
+//         }
+//         for(int j=1; j<i;j++){
+//             cout<<j;
+//         }
+//         cout<<endl;
+//     }    
+// }
+
+
+
+//This have the the reverse loop in 3rd triangle!
+// int main(){
+//     int n=4;
+//     for(int i=0; i<n;i++){
+//         for(int j=0; j<n-i; j++){
+//             cout << " "; 
+//         }
+//         for(int j=0; j<i+1;j++){
+//             cout<<j+1;
+//         }
+//         for(int j=i; j>0;j--){
+//             cout<<j;
+//         }
+//         cout<<endl;
+//     }
+//     return 0;
+// }
+
+
+//Hollow diamond patterns! !!⚠️This is still remaining
+
+// int main(){
+//     int n=4;
+//     for(int i=0;i<n;i++){
+//         for(int j=0; j<n-i-1;j++){
+//             cout<<" ";
+//         }
+//         for(int j=n-i;j>n-i-1;j--){
+//             cout<<"*";
+//         }
+//         for(int j=n-i+1;j)
+//         cout<<endl;
+//     }
+
+
+// }
