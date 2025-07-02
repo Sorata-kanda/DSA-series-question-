@@ -631,5 +631,18 @@ using namespace std;
 
 // WAF to print all prime numbers from 2 to N.
 
-// WAF to print nth Fibonacci.
+
+// Function to print the nth Fibonacci number
+int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    int n;
+    cout << "Enter the position of Fibonacci number: ";
+    cin >> n;
+    cout << "The " << n << "th Fibonacci number is: " << fibonacci(n) << endl;
+    return 0;
+}
 
