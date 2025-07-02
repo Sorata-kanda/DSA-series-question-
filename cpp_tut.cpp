@@ -462,47 +462,174 @@ using namespace std;
 // }
 
 
-int main(){
-    int n=4;
-    // top
-    for(int i=0; i<n; i++){
-        // spaces
-        for(int j=0;j<n-i-1;j++){
-            cout<< " ";
-        }
-        cout<<"*";
+// int main(){
+//     int n=4;
+//     // top
+//     for(int i=0; i<n; i++){
+//         // spaces
+//         for(int j=0;j<n-i-1;j++){
+//             cout<< " ";
+//         }
+//         cout<<"*";
 
 
-        // spaces
-        if(i!=0){
-            for(int j=0;j<2*i-1;j++){
-                cout<< " ";
-            }
-            cout<< "*";
-        }
+//         // spaces
+//         if(i!=0){
+//             for(int j=0;j<2*i-1;j++){
+//                 cout<< " ";
+//             }
+//             cout<< "*";
+//         }
 
 
 
-        cout<<endl;
-    }
-    //bottom
-    for(int i=0; i<n-1; i++){
-        // spaces
-        for(int j=0 ;j<i+1;j++){
-            cout<<" ";
-        }
-        cout<<"*";
-        // spaces
-        if(i!=n-2){
-            for(int j=0; j<2*(n-i)-5;j++){
-                cout<<" ";
-            }
-            cout<<"*";
-        }   
+//         cout<<endl;
+//     }
+//     //bottom
+//     for(int i=0; i<n-1; i++){
+//         // spaces
+//         for(int j=0 ;j<i+1;j++){
+//             cout<<" ";
+//         }
+//         cout<<"*";
+//         // spaces
+//         if(i!=n-2){
+//             for(int j=0; j<2*(n-i)-5;j++){
+//                 cout<<" ";
+//             }
+//             cout<<"*";
+//         }   
         
-        cout<< endl;
-    }
-    return 0;
-}
+//         cout<< endl;
+//     }
+//     return 0;
+// }
 
+
+//practice question 
+/* Print this pattern
+
+*        *
+**      ** 
+***    ***
+****  ****
+**********
+****  ****
+***    ***
+**      **
+*        *
+
+*/
+
+
+// ------------------------------------------------Functions------------------------------------------------------
+
+
+//Min of 2 numbers:-
+
+// void min(int a, int b){ // These are parameters!!
+//     if(a>b){
+//         cout<< "N = "<< a << " is greater than M";
+//         // WE can also write "return a" (if out datatype of function is INT);
+//     }
+//     else {
+//         cout << "M = " << b <<" is greater than N";
+//         // WE can also write "return b" (if out datatype of function is INT);
+//     }
+// }
+// int main(){
+//     int n,m;
+//     cout<<"Enter value of n: ";
+//     cin>>n;
+//     cout<< "Enter value of m: ";
+//     cin>>m;
+//     min(n,m); // These are arguments!!
+// }
+
+
+
+//calculate sum of number from 1 to n
+
+// int summed(int a){
+//     int sum =0;
+//     for(int i=0;i<=a;i++){
+//         sum += i;
+//         // cout<<sum<<"   "; //TO check how this is wroking uncomment this line! 
+        
+//     }
+//     return sum;
+// }
+// int main(){
+//     int a =10;
+//     cout<<summed(a);
+// }
+
+
+
+// FACTORIAL :)
+
+
+// int fact(int a){
+//     int mul=1;
+//     for(int i=1;i<=a;i++){
+//         mul *= i;
+//         // cout << mul <<"   ";  to understand how it works uncomment this (●'◡'●)
+//     }
+//     return mul;
+// }
+// int main(){
+//     cout<< fact(5);
+// }
+
+
+
+// Find sum of digits of a number:- 
+
+// int digited(int n){
+//     int sum=0;
+//     while(n > 0){
+//         int i = n%10;
+//         n = n/10;
+//         // cout << i <<" ";
+//         sum += i;
+//     }
+//     return sum;
+// }
+
+// int main(){
+//     int n = 2356;
+//     cout<<digited(n);
+// }
+
+
+
+// calculate ncr bionomial cofficient!  formula = ⁿCr = n!/r!(n-r)!
+
+// int fact(int n){
+//     int mul =1;
+//     for(int i=1; i<=n; i++){
+//         mul *= i;
+//     }
+//     return mul;
+// }
+// int main(){
+//     int n = 8;
+//     int r = 2;
+//     int factN = fact(n);
+//     int factR = fact(r);
+//     int sub = fact(n-r);
+  
+
+//     int sus = factN/(factR*sub);
+//     cout<< sus;
+// }
+
+
+
+
+// WAF to check if a number is prime or not .
+
+// WAF to print all prime numbers from 2 to N.
+
+// WAF to print nth Fibonacci.
 
