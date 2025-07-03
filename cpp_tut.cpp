@@ -633,16 +633,73 @@ using namespace std;
 
 
 // Function to print the nth Fibonacci number
-int fibonacci(int n) {
-    if (n <= 1) return n;
-    return fibonacci(n - 1) + fibonacci(n - 2);
+// int fibonacci(int n) {
+//     if (n <= 1) return n;
+//     return fibonacci(n - 1) + fibonacci(n - 2);
+// }
+
+// int main() {
+//     int n;
+//     cout << "Enter the position of Fibonacci number: ";
+//     cin >> n;
+//     cout << "The " << n << "th Fibonacci number is: " << fibonacci(n) << endl;
+//     return 0;
+// }
+
+
+//-------------------------------------Chapter -6 ----------------------------------------------------------------------------
+
+
+
+
+//binary number system
+
+// int binary(int n){
+//     int ans = 0;
+//     int pow = 1;
+//     while(n>0){
+//         int rem = n%2;
+//         n = n/2;
+//         ans += rem*pow;
+//         pow = pow*10;
+
+//     }
+//     return ans;
+// }
+
+// int main(){
+//     int n=2;
+//     int m;
+//     cout<<"enter the values you need decimal number for: ";
+//     cin >> m;
+//     for(int i=n; i<=m;i++){
+//         cout <<"value of "<< i << " = " <<binary(i);
+//         cout<< endl;
+//     }
+//     return 0;
+// }
+
+
+// reverse binary to decimal
+
+int bintodec(int n){
+    int pow = 1;
+    int ans =0;
+    while(n>0){
+        int rem = n%10;
+        ans += rem*pow;
+        n/=10;
+        pow *= 2;
+    }
+    return ans;
+}
+int main(){
+    int n;
+    cout<< "Enter the value you want to convert: ";
+    cin>>n;
+    cout<<"Decimal number of binary(" << n << ") = " <<bintodec(n); 
 }
 
-int main() {
-    int n;
-    cout << "Enter the position of Fibonacci number: ";
-    cin >> n;
-    cout << "The " << n << "th Fibonacci number is: " << fibonacci(n) << endl;
-    return 0;
-}
+
+//understand binary system in detail :- https://youtu.be/xpy5NXiBFvA?si=ALrc_7z45InDio76&t=1895
 
