@@ -652,7 +652,7 @@ using namespace std;
 
 
 
-//binary number system
+// binary number system
 
 // int binary(int n){
 //     int ans = 0;
@@ -682,24 +682,97 @@ using namespace std;
 
 // reverse binary to decimal
 
-int bintodec(int n){
-    int pow = 1;
-    int ans =0;
-    while(n>0){
-        int rem = n%10;
-        ans += rem*pow;
-        n/=10;
-        pow *= 2;
-    }
-    return ans;
-}
-int main(){
-    int n;
-    cout<< "Enter the value you want to convert: ";
-    cin>>n;
-    cout<<"Decimal number of binary(" << n << ") = " <<bintodec(n); 
-}
+// int bintodec(int n){
+//     int pow = 1;
+//     int ans =0;
+//     while(n>0){
+//         int rem = n%10;
+//         ans += rem*pow;
+//         n/=10;
+//         pow *= 2;
+//     }
+//     return ans;
+// }
+// int main(){
+//     int n;
+//     cout<< "Enter the value you want to convert: ";
+//     cin>>n;
+//     cout<<"Decimal number of binary(" << n << ") = " <<bintodec(n); 
+// }
 
 
 //understand binary system in detail :- https://youtu.be/xpy5NXiBFvA?si=ALrc_7z45InDio76&t=1895
 
+// int main(){
+//     int a =10, b=23;
+//     cout<<(a&b);
+// }
+// int main(){
+//     int a =10, b=23;
+//     cout<<(a|b);
+// }
+// int main(){
+//     int a =10, b=23;
+//     cout<<(a^b);
+// }
+
+// int main(){
+//     cout<<(4 << 1); //left shift this is - a*2(pow b)
+// }
+// int main(){
+//     cout<<(4 >> 1); //right shift this is - a/2(pow b)
+// }
+
+
+
+
+
+// priority 
+
+// Operators
+
+// !, +, - (unary operators)
+
+// *,/,%
+// +, -
+
+// <, <= , >=,>
+
+// == , !=
+
+// & &
+
+// =
+
+// (assignment operator)
+
+// Precedence
+// R to L
+// L to R
+// L to R
+// L to R
+// L to R
+// L to R
+// L to R
+// R to L
+// first
+// second
+// thir
+// fourth
+// fifth
+// sixth
+// seventh
+// last
+
+
+// Data type modifers
+// long
+// short
+// long long
+// signed 
+// unsigned
+
+
+// Questions to solve
+// Figure out how to find if a number is power of 2 without any loop.
+// WAF to reverse an Integer n.
