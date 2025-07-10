@@ -1,5 +1,6 @@
 #include<iostream>
 #include<windows.h>
+#include<vector>
 using namespace std;
 
 // int main(){
@@ -186,3 +187,116 @@ using namespace std;
 // WAF to print all the unique values in an array.
 
 // WAF to print intersection of 2 arrays.
+
+//H.P - 1
+// int  sumed(int arr[],int size){
+//     int sum =0;
+//     for(int i=0; i<size; i++){
+//         sum += arr[i];
+//     }
+//     return sum;
+// }
+// int  muled(int arr[],int size){
+//     int mul =1;
+//     for(int i=0; i<size; i++){
+//         mul *= arr[i];
+//     }
+//     return mul;
+// }
+// int main(){
+//     int size = 7;
+//     int arr[size] = {1,2,3,4,5,6,7};
+//     cout<<"sum: "<< sumed(arr,size);
+//     cout<<endl;
+//     cout<<"mul: "<<muled(arr,size);
+// }   
+
+
+
+//H.P - 2
+// int main(){
+//     int size = 7;
+//     int arr[size] = {1,2,3,4,5,6,7};
+//     int maxi = INT_MIN;
+//     int mini = INT_MAX;
+//     int pos1 =0, pos2 = 0;
+//     for(int i=0;i<size;i++){
+//         if(arr[i]<mini){
+//             mini = arr[i];
+//             pos1 = i;
+//         }
+//         if(arr[i]>maxi){
+//             maxi = arr[i];
+//             pos2 = i;
+//         }
+//     }
+//     swap(arr[pos1],arr[pos2]);
+//     for(int i=0; i<size;i++){
+//         cout<<arr[i]<< " ";
+//     }
+//     return 0;
+// }
+
+
+//-----------------------------------vectors---------------------------------------------
+
+// int main(){
+//     vector<int> vec = {1,2,3,4,5};
+//     vector<int> fuck (3,0); //1st parameter shows the size while the second shows what kind of value are there
+//     cout << vec[0]<<endl;
+//     cout<< fuck[1];
+
+//     return 0;
+// }
+
+// int main(){
+//     vector<char> yoyo = {'a','b','c','d','e','f'};
+//     for(char i: yoyo){
+//         cout<< i<< endl;
+//     }
+
+//         //we can also print the size of a vector
+//     cout<< "size = "<<yoyo.size();
+// }
+
+
+// int main(){
+//     vector<int> vec;
+//     cout<<"initial size: "<< vec.size()<<endl;
+//     vec.push_back(25); // we can only push one value in one funciton '_'
+//     vec.push_back(89);
+//     vec.push_back(26);
+//     vec.push_back(45);
+//     cout<<"After pushing at the end of vector, size is:"<<vec.size()<<endl;
+//     for(int i:vec){
+//         cout<<i<< " ";
+//     }
+//     cout<< "\n\n";
+
+
+//     //using pop_back
+//     vec.pop_back();
+//     for(int i:vec){
+//         cout<<i<< " ";
+//     }
+//     cout<< "\n\n";
+
+//     //using front and back and at
+//     cout << vec.front()<<endl;
+//     cout << vec.back()<<endl;
+//     cout << vec.at(2);
+//     cout << vec.at(3); // this will give an error as we pop of the 3rd value in our vector
+    
+
+// }
+
+int main(){
+    vector<int> vec;
+
+    vec.push_back(0);
+    vec.push_back(1);
+    vec.push_back(2);
+    // vec.push_back(3);
+    // vec.push_back(4);
+    cout<< vec.size() << endl<< vec.capacity();  // capactiry came 4 because vecotr gets double each time if it get's full :) 
+}
