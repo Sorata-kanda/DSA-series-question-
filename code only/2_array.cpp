@@ -290,13 +290,26 @@ using namespace std;
 
 // }
 
-int main(){
-    vector<int> vec;
+// int main(){
+//     vector<int> vec;
 
-    vec.push_back(0);
-    vec.push_back(1);
-    vec.push_back(2);
-    // vec.push_back(3);
-    // vec.push_back(4);
-    cout<< vec.size() << endl<< vec.capacity();  // capactiry came 4 because vecotr gets double each time if it get's full :) 
+//     vec.push_back(0);
+//     vec.push_back(1);
+//     vec.push_back(2);
+//     // vec.push_back(3);
+//     // vec.push_back(4);
+//     cout<< vec.size() << endl<< vec.capacity();  // capactiry came 4 because vecotr gets double each time if it get's full :) 
+// }
+
+
+//finding the unique value ni the vector
+//caution ::⚠️This value can find only 1 unique value, if there are multiple unique value in vector this code fails, ex:-  vector<int> vec = {1,2,3,1};
+int main(){
+    vector<int> vec = {1,2,3,1,2};
+    int ans = 0;
+
+    for(int i:vec){
+        ans ^=i;
+    }
+    cout<<ans;
 }
