@@ -302,14 +302,99 @@ using namespace std;
 // }
 
 
-//finding the unique value ni the vector
+//finding the unique value in the vector
 //caution ::⚠️This value can find only 1 unique value, if there are multiple unique value in vector this code fails, ex:-  vector<int> vec = {1,2,3,1};
-int main(){
-    vector<int> vec = {1,2,3,1,2};
-    int ans = 0;
+// int main(){
+//     vector<int> vec = {1,2,3,1,2};
+//     int ans = 0;
 
-    for(int i:vec){
-        ans ^=i;
-    }
-    cout<<ans;
-}
+//     for(int i:vec){
+//         ans ^=i;
+//     }
+//     cout<<ans;
+// }
+
+
+// H.W 
+// remaining {
+// WAF to print all the unique values in an array.
+
+// WAF to print intersection of 2 arrays.}
+
+//WAF of linear search using vector
+
+//WAF reverse a array using vector
+
+
+//finding th sum of subarray
+
+
+
+
+//--------------------------------------------kadane's algorithm------------------------------------------------------------------
+
+
+// int main(){
+//     int arr[] = {1,2,3,4,5};
+//     int size = 5;
+//     int sum=0;
+//     for(int start=0;start<size;start++){
+//         for(int end=start; end<size;end++){
+//             for(int i = start; i<=end;i++){
+//                 cout<<arr[i];
+//             }
+//             cout<< " ";
+//         }
+//         cout<<endl;
+//     }
+//     return 0;
+// }
+
+
+//brute force approch
+// int main(){
+//     int arr[] = {1,2,3,4,5};
+//     int size = 5;
+//     int maxsum = INT_MIN;
+//     for(int start=0;start<size;start++){
+//         int curr_sum = 0;
+//         for(int end=start; end<size;end++){
+//             curr_sum += arr[end];
+//             maxsum = max(curr_sum,maxsum);
+//         }
+//         // cout<<endl;
+//     }
+//     cout<<maxsum;
+//     return 0;
+// }
+
+//using kadanes algorithm
+
+// int main(){
+//     int size = 5;
+//     int arr[size] = {1,2,-3,4,-5};
+//     int curr_sum =0, maxi = INT_MIN;
+//     for(int i=0;i<size;i++){
+//         curr_sum += arr[i];
+//         maxi = max(curr_sum,maxi);
+//         if(curr_sum<0){
+//             curr_sum = 0;
+//         }
+//     }
+//     cout<<maxi;
+// }
+//using vector
+// int main(){
+//     int size = 5;
+//     vector<int> vec = {1,2,-3,4,-5};
+//     int curr_sum =0, maxi = INT_MIN;
+//     for(int i:vec){
+//         curr_sum += i;
+//         maxi = max(curr_sum,maxi);
+//         if(curr_sum<0){
+//             curr_sum = 0;
+//         }
+//     }
+//     cout<<maxi;
+// }
+
