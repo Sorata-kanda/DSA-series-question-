@@ -326,7 +326,7 @@ using namespace std;
 //WAF reverse a array using vector
 
 
-//finding th sum of subarray
+
 
 
 
@@ -334,6 +334,7 @@ using namespace std;
 //--------------------------------------------kadane's algorithm------------------------------------------------------------------
 
 
+//finding th sum of subarray
 // int main(){
 //     int arr[] = {1,2,3,4,5};
 //     int size = 5;
@@ -383,6 +384,8 @@ using namespace std;
 //     }
 //     cout<<maxi;
 // }
+
+
 //using vector
 // int main(){
 //     int size = 5;
@@ -398,3 +401,100 @@ using namespace std;
 //     cout<<maxi;
 // }
 
+
+//---------------------------------------------- Pair sum (Brute force approch)--------------------------------------------------
+
+// int main(){
+//     vector<int> vec = {1,2,3,4,5};
+//     int ans = 0;
+//     int target = 7;
+//     for(int i:vec){
+//         for(int j = i+1; j<vec.size(); j++){
+//             if(vec[i]+vec[j] == target){
+//                 cout<< vec[i]<<" + "<<vec[j]<<" = "<<vec[i]+vec[j]<<"\n";
+                
+//             }
+//         }
+//     }
+//     return 0;
+// }
+
+//Teacher's approch
+
+// vector<int> pairs(vector<int> arr, int target){
+//     vector<int> ans;
+//     int size = arr.size();
+//     for(int i=0; i<size;i++){
+//         for(int j=0; j<size;j++){
+//             if(arr[i] + arr[j] == target){
+//                 // ans.push_back(arr[i]); //these give the index value 
+//                 // ans.push_back(arr[j]);
+//                 ans.push_back(i);
+//                 ans.push_back(j);
+//                 // return ans;
+//             }
+//         }
+//     }
+//     return ans; 
+// }
+// int main(){
+//     vector<int> arr = {2,7,11,15};
+//     int target = 9;
+
+//     vector<int> oyye = pairs(arr,target);
+//     cout<<oyye[0]<<", "<<oyye[1];
+// }
+
+
+//Optimised approch
+
+// int main(){
+//     vector<int> arr = {2,7,11,15};
+//     int target = 9;
+//     int i =0;
+//     int j = arr.size() - 1;
+//     while(i<j){
+//         if(arr[i]+arr[j]>target){
+//             j--;
+//         }
+//         else if(arr[i]+arr[j]<target){
+//             i++;
+//         }
+//         else {
+//             cout<<arr[i]<<", "<<arr[j];
+//             i++;j--;
+//         }
+//     }
+//     return 0;
+// }
+
+
+//Teacher;s approch
+
+vector<int> pairs(vector<int> arr, int target){
+    vector<int> ans;
+    int size = arr.size();
+    int i=0, j=size-1;
+    while(i<j){
+        int pair = arr[i]+ arr[j];
+        if(pair>target){
+            j--;
+        }
+        else if(pair<target){
+            i++;
+        }
+        else{
+            ans.push_back(i);
+            ans.push_back(j);
+            return ans;
+        }
+    }
+    return ans; 
+}
+int main(){
+    vector<int> arr = {2,7,11,15};
+    int target = 26;
+
+    vector<int> oyye = pairs(arr,target);
+    cout<<oyye[0]<<", "<<oyye[1];
+}
