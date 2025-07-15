@@ -1,6 +1,7 @@
 #include<iostream>
 #include<windows.h>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 // int main(){
@@ -471,30 +472,114 @@ using namespace std;
 
 //Teacher;s approch
 
-vector<int> pairs(vector<int> arr, int target){
-    vector<int> ans;
-    int size = arr.size();
-    int i=0, j=size-1;
-    while(i<j){
-        int pair = arr[i]+ arr[j];
-        if(pair>target){
-            j--;
+// vector<int> pairs(vector<int> arr, int target){
+//     vector<int> ans;
+//     int size = arr.size();
+//     int i=0, j=size-1;
+//     while(i<j){
+//         int pair = arr[i]+ arr[j];
+//         if(pair>target){
+//             j--;
+//         }
+//         else if(pair<target){
+//             i++;
+//         }
+//         else{
+//             ans.push_back(i);
+//             ans.push_back(j);
+//             return ans;
+//         }
+//     }
+//     return ans; 
+// }
+// int main(){
+//     vector<int> arr = {2,7,11,15};
+//     int target = 26;
+
+//     vector<int> oyye = pairs(arr,target);
+//     cout<<oyye[0]<<", "<<oyye[1];
+// }
+
+
+
+
+//---------------------------------------Majority Element (Brite force approch)-------------------------------------------------
+
+
+// int main(){
+//     vector<int> arr = {1,3,4,1,1,1};
+//     int size = arr.size();
+//     for(int i: arr){
+//         int fre = 0;
+//         for(int j:arr){
+//             if(j==i){
+//                 fre++;
+//             }
+//         }
+//         if(fre>size/2){
+//             cout<<i;
+//             break;
+//         }
+//     }
+// }   
+
+// A small optimised approch
+
+
+// int main(){
+//     vector<int> vec ={2,2,1,1,1,2,2};
+//     int size = vec.size(); 
+//     sort(vec.begin(), vec.end());
+//     int freq =1;
+//     int ans = vec[0];
+//     for(int i=1;i<size;i++){
+//         if(vec[i]==vec[i-1]){
+//             freq++;
+//         }
+//         else{
+//             freq =1;
+//             ans = vec[i];
+//         }
+//         if(freq>size/2){
+//             cout<< ans;
+//             break;
+//         }
+//     }
+//     return 0;
+// }
+
+
+
+// -------------------------------------------Moore's voting algorithm---------------------------------------
+
+int main(){
+    vector<int> arr = {1,2,2,1,1};
+    int size= arr.size();
+    int freq =0; 
+    int ans =0;
+    for(int i=0;i<size;i++){
+        if(freq==0){
+            ans= arr[i];
         }
-        else if(pair<target){
-            i++;
+        if(ans == arr[i]){
+            freq++;
         }
         else{
-            ans.push_back(i);
-            ans.push_back(j);
-            return ans;
+            freq--;
         }
     }
-    return ans; 
-}
-int main(){
-    vector<int> arr = {2,7,11,15};
-    int target = 26;
-
-    vector<int> oyye = pairs(arr,target);
-    cout<<oyye[0]<<", "<<oyye[1];
+    // To check the variation (just in case there is not majority element)
+    int count =0;
+    for(int i:arr){
+        if(i==ans){
+            count++;
+        }
+    }
+    if(count>size/2){
+        cout<<ans;
+    }
+    else{
+        cout<<"Nothing in majority";
+    }
+    // cout<<ans;
 }
