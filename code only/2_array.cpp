@@ -552,34 +552,48 @@ using namespace std;
 
 // -------------------------------------------Moore's voting algorithm---------------------------------------
 
-int main(){
-    vector<int> arr = {1,2,2,1,1};
-    int size= arr.size();
-    int freq =0; 
-    int ans =0;
-    for(int i=0;i<size;i++){
-        if(freq==0){
-            ans= arr[i];
-        }
-        if(ans == arr[i]){
-            freq++;
-        }
-        else{
-            freq--;
-        }
-    }
-    // To check the variation (just in case there is not majority element)
-    int count =0;
-    for(int i:arr){
-        if(i==ans){
-            count++;
-        }
-    }
-    if(count>size/2){
-        cout<<ans;
-    }
-    else{
-        cout<<"Nothing in majority";
-    }
-    // cout<<ans;
-}
+// int main(){
+//     vector<int> arr = {1,2,2,1,1};
+//     int size= arr.size();
+//     int freq =0; 
+//     int ans =0;
+//     for(int i=0;i<size;i++){
+//         if(freq==0){
+//             ans= arr[i];
+//         }
+//         if(ans == arr[i]){
+//             freq++;
+//         }
+//         else{
+//             freq--;
+//         }
+//     }
+//     // To check the variation (just in case there is not majority element)
+//     int count =0;
+//     for(int i:arr){
+//         if(i==ans){
+//             count++;
+//         }
+//     }
+//     if(count>size/2){
+//         cout<<ans;
+//     }
+//     else{
+//         cout<<"Nothing in majority";
+//     }
+//     // cout<<ans;
+// }
+
+
+
+
+/*
+so today i have done time and space complaxity out of which i am having trouble understadning the recurion
+time and space complaxity so for now i am leaving it as such and i am thinking to complete that later on
+when i will elarn more about recursion and some more sorting methonds
+
+https://youtu.be/PwKv8fOcriM?si=c_2pbKD7mKNfHlrE&t=3956
+
+The time stamp is and try to understand the whole time and space complexity fo recursion from 
+aounr 45:00
+That's all for today , have a nice day*/
