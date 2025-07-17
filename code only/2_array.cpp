@@ -597,3 +597,51 @@ https://youtu.be/PwKv8fOcriM?si=c_2pbKD7mKNfHlrE&t=3956
 The time stamp is and try to understand the whole time and space complexity fo recursion from 
 aounr 45:00
 That's all for today , have a nice day*/
+
+
+
+
+//binary exponetiation x^n
+
+
+// int main(){
+//     long big = 10;
+//     double ans = 1;
+//     double x = 2.0000;
+//     while(big>0){
+//         if(big%2==1){
+//             ans *=x;
+
+//         }
+//         x*=x;
+//         big  /=2;
+
+//     }
+//     cout << ans; 
+
+// }
+
+//if our power is in negative :-
+
+int main(){
+    long big = -2;
+    double ans = 1;
+    double x = 2.0000;
+    if(big<0){
+            x = 1/x;
+            big = -big;
+        }
+
+    while(big>0){
+        if(big%2==1){
+            ans *=x;
+
+        }
+        
+        x*=x;
+        big  /=2;
+
+    }
+    cout << ans; 
+
+}
