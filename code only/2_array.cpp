@@ -623,25 +623,41 @@ That's all for today , have a nice day*/
 
 //if our power is in negative :-
 
-int main(){
-    long big = -2;
-    double ans = 1;
-    double x = 2.0000;
-    if(big<0){
-            x = 1/x;
-            big = -big;
-        }
+// int main(){
+//     long big = -2;
+//     double ans = 1;
+//     double x = 2.0000;
+//     if(big<0){
+//             x = 1/x;
+//             big = -big;
+//         }
 
-    while(big>0){
-        if(big%2==1){
-            ans *=x;
+//     while(big>0){
+//         if(big%2==1){
+//             ans *=x;
 
-        }
+//         }
         
-        x*=x;
-        big  /=2;
+//         x*=x;
+//         big  /=2;
 
+//     }
+//     cout << ans; 
+
+// }
+
+
+//---------------------------------------Buy and sell problem---------------------------
+
+int main(){
+    vector<int> prices = {7,1,5,3,6,4}; 
+    int max_profit = 0;
+    int best_buy =  prices[0];
+    for(int i=0; i<prices.size();i++){
+        if(prices[i]>best_buy){
+            max_profit = max(max_profit,prices[i]-best_buy);
+        }
+        best_buy = min(best_buy,prices[i]);
     }
-    cout << ans; 
-
+    cout<< max_profit;
 }
