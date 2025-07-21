@@ -649,15 +649,77 @@ That's all for today , have a nice day*/
 
 //---------------------------------------Buy and sell problem---------------------------
 
+// int main(){
+//     vector<int> prices = {7,1,5,3,6,4}; 
+//     int max_profit = 0;
+//     int best_buy =  prices[0];
+//     for(int i=0; i<prices.size();i++){
+//         if(prices[i]>best_buy){
+//             max_profit = max(max_profit,prices[i]-best_buy);
+//         }
+//         best_buy = min(best_buy,prices[i]);
+//     }
+//     cout<< max_profit;
+// }
+
+
+
+//---------------------------------------container with most water---------------------------
+//---------------------------------------Brute Force-----------------------------------------
+
+// int main(){
+//     int arr[] = {1,8,6,2,5,4,8,3,7};
+//     int size = 9;
+//     int width;
+//     int height = INT_MAX;
+//     int area;
+//     int ans = INT_MIN;
+//     for(int i=0; i<size;i++){
+//         for(int j=i+1;j<size;j++){
+//             width = j-i;
+//             height =min(arr[j],arr[i]);
+//             area =  width*height;
+//             ans = max(area,ans);
+//         }  
+//     }
+//     cout<<ans;
+// }
+
+//-------------------with vector--------------
+
+
+// int main(){
+//         vector<int> container = {1,8,6,2,5,4,8,3,7};
+//     int max_water = 0;
+//     for(int i=0; i<container.size();i++){
+//         for(int j=i+1; j<container.size();j++){
+//             int wt = j-i;
+//             int ht = min(container[i],container[j]);
+//             int curr_water = wt*ht;
+
+//             max_water = max(curr_water,max_water);
+//         }
+//     }
+//     cout<<max_water;
+// }
+
+//-----------------------------------Two pointer approch-----------------------------
+
 int main(){
-    vector<int> prices = {7,1,5,3,6,4}; 
-    int max_profit = 0;
-    int best_buy =  prices[0];
-    for(int i=0; i<prices.size();i++){
-        if(prices[i]>best_buy){
-            max_profit = max(max_profit,prices[i]-best_buy);
+    vector<int> container = {1,8,6,2,5,4,8,3,7};
+    int lp = 0, rp = container.size() , max_water = 0;
+    while(lp<rp){
+        int wd = rp-lp;
+        int ht = min(container[lp],container[rp]);
+        int curr_water = ht*wd;
+        max_water = max(curr_water,max_water);
+        if(container[lp]<container[rp]){
+            lp++;
         }
-        best_buy = min(best_buy,prices[i]);
+        else{
+            rp--;
+        }
     }
-    cout<< max_profit;
+    cout<<max_water;
 }
+
