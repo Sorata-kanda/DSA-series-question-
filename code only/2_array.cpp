@@ -705,21 +705,101 @@ That's all for today , have a nice day*/
 
 //-----------------------------------Two pointer approch-----------------------------
 
-int main(){
-    vector<int> container = {1,8,6,2,5,4,8,3,7};
-    int lp = 0, rp = container.size() , max_water = 0;
-    while(lp<rp){
-        int wd = rp-lp;
-        int ht = min(container[lp],container[rp]);
-        int curr_water = ht*wd;
-        max_water = max(curr_water,max_water);
-        if(container[lp]<container[rp]){
-            lp++;
-        }
-        else{
-            rp--;
-        }
-    }
-    cout<<max_water;
-}
+// int main(){
+//     vector<int> container = {1,8,6,2,5,4,8,3,7};
+//     int lp = 0, rp = container.size() , max_water = 0;
+//     while(lp<rp){
+//         int wd = rp-lp;
+//         int ht = min(container[lp],container[rp]);
+//         int curr_water = ht*wd;
+//         max_water = max(curr_water,max_water);
+//         if(container[lp]<container[rp]){
+//             lp++;
+//         }
+//         else{
+//             rp--;
+//         }
+//     }
+//     cout<<max_water;
+// }
 
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------Product off array except self---------------------------------------------------------------------------------
+//Brute force approch------division(/) operator is not allowed-----------------------
+
+
+// int main(){
+//     vector<int> vec = {1,2,3,4};
+//     vector<int> neww;
+    
+//     for(int i=0; i<vec.size();i++){
+//         int mul = 1;
+//         for(int j=0;j<vec.size();j++){
+//             if(j!=i){
+//                 mul *= vec[j]; 
+//             }
+//         }
+        
+//         neww.push_back(mul);
+
+//     }
+//     for(int i=0;i<neww.size();i++){
+//         cout<<neww[i]<<" ";
+//     }
+// }
+
+
+
+//---------------------------Optimised time complaxity------------------------------------------------------------------------------
+// int main(){
+//     vector<int> vec = {1,2,3,4};
+//     int n = vec.size();
+//     vector<int> ans(n,1);
+//     vector<int> prefix(n,1);
+//     vector<int> suffix(n,1);
+//     for(int i=1;i<vec.size();i++){
+//         prefix[i] = prefix[i-1]*vec[i-1];
+//     }
+//     for(int i=n-2;i>=0;i--){
+//         suffix[i] = suffix[i+1]*vec[i+1];
+//     }
+//     for(int i=0;i<vec.size();i++){
+//         ans[i] = prefix[i] * suffix[i];
+//         cout<<ans[i]<<" ";
+//     }
+
+// }
+
+
+
+//---------------------------Optimised time & space complaxity------------------------------------------------------------------------------
+int main(){
+    vector<int> vec = {1,2,3,4};
+    int n = vec.size();
+    vector<int> ans(n,1);
+    int suffix = 1;
+
+    for(int i=1;i<vec.size();i++){
+        ans[i] = ans[i-1]*vec[i-1];
+        
+    }
+    for(int i=n-2;i>=0;i--){
+        suffix *= vec[i+1];
+        ans[i] = suffix*ans[i];
+    }
+    for(int i=0;i<vec.size();i++){
+        cout<<ans[i]<<" ";
+    }
+
+}
