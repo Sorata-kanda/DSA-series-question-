@@ -28,32 +28,56 @@ using namespace std;
 //     return 0;
 // }
 
+// ==================using function====================
+
+// int binaryse(vector<int> arr, int target){
+//     int start = 0, end = arr.size() - 1, mid;
+//     while(start <= end){
+//         mid = (start + end) / 2; // we can write this as mid = start + (end - start) / 2 so that the capacity of the integer  will not overlow
+//         if(arr[mid] > target){
+//             end = mid - 1;
+//         }
+//         else if(arr[mid] < target){
+//             start = mid + 1;
+//         }
+//         else{
+//             return mid;
+//         }
+//     }
+//     return -1; // Return -1 if the target is not found
+// }
+// int main(){
+//     vector<int> arr = {-1,0,3,4,7,8,9};
+//     int tar1 = 8;
+//     // cout<<binaryse(arr,tar1);
+
+//     vector<int> arr2 = {-1,0,3,5,6,12};
+//     int tar2 = 3;
+//     cout << binaryse(arr2, tar2);
+// }
 
 
-int binaryse(vector<int> arr, int target){
-    int start = 0, end = arr.size() - 1, mid;
-    while(start <= end){
-        mid = (start + end) / 2;
-        if(arr[mid] > target){
-            end = mid - 1;
+// =================using recursion====================
+int bb(vector<int> arr,int target,int start, int end){
+    
+    if(start <=end){
+        int mid = start + (end - start)/2;
+        if(target<arr[mid]){
+            return bb(arr,target,start,mid-1);
         }
-        else if(arr[mid] < target){
-            start = mid + 1;
+        else if(target>arr[mid]){
+            return bb(arr,target,mid+1,end);
         }
         else{
             return mid;
         }
     }
-    return -1; // Return -1 if the target is not found
+    return -1; 
 }
+
 int main(){
-    vector<int> arr = {-1,0,3,4,7,8,9};
-    int tar1 = 8;
-    // cout<<binaryse(arr,tar1);
-
-    vector<int> arr2 = {-1,0,3,5,6,12};
-    int tar2 = 3;
-    cout << binaryse(arr2, tar2);
+    vector<int> arr = {-1,0,3,5,9,12};
+    int target =  12;
+    int start = 0, end = arr.size()-1;
+    cout<<bb(arr,target,start,end);
 }
-
-
