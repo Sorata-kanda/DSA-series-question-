@@ -86,34 +86,88 @@ using namespace std;
 // ---------------------------------------------Search in Rotated array-----------------------------------------------------
 
 
+// int main(){
+//     vector<int> arr = {3,4,5,6,7,0,1,2};
+//     int tar = 0, start = 0, end = arr.size() - 1, mid;
+//     while(start <= end){
+//         mid = start + (end - start) / 2;
+//         if(arr[mid] == tar){
+//             cout << mid;
+//             break;
+//         }
+//         // Check if the left half is sorted
+//         if(arr[start] <= arr[mid]){
+//             if(arr[start] <= tar && tar < arr[mid]){ // Logic error: should compare with arr[mid]
+//                 end = mid - 1;
+//             }
+//             else{
+//                 start = mid + 1;
+//             }
+//         }
+//         // Otherwise, the right half must be sorted
+//         else{
+//             if(arr[mid] <= tar && tar <= arr[end]){
+//                 start = mid + 1;
+//             }
+//             else{
+//                 end = mid - 1;
+//             }
+//         }
+//     }
+//     return 0;
+// }
+
+
+
+
+
+
+//--------------------------------------Peak index in mountain---------------------------------------------------------
+
+// int main() {
+//     vector<int> arr = {0, 3, 8, 9, 5, 2};
+//     int start = 0, end = arr.size() - 1;
+
+//     while (start < end) {
+//         int mid = start + (end - start) / 2;
+//         if (arr[mid] > arr[mid + 1]) {
+//             end = mid; // The peak is in the left half, including mid
+//         } else {
+//             start = mid + 1; // The peak is in the right half, excluding mid
+//         }
+//     }
+//     // At the end of the loop, start and end will both point to the peak element
+//     cout << start;
+
+//     return 0;
+// }
+
+//======================Teacher's code==================
+
+//In this code we need check points, but there are some conditionds there are in question by which
+//we don't need to use check points anymore
+
+//1. array should be least 3 values long
+//2. array should be always in decreasing and increasing order
+//3. peak element can't exists on start or end [important condition]
+
 int main(){
-    vector<int> arr = {3,4,5,6,7,0,1,2};
-    int tar = 0, start = 0, end = arr.size() - 1, mid;
-    while(start <= end){
-        mid = start + (end - start) / 2;
-        if(arr[mid] == tar){
-            cout << mid;
+    vector<int> arr = {0,3,8,9,5,2};
+    // int start = 0, end = arr.size()-1, mid;
+    int start = 1, end = arr.size()-2 ,mid; 
+    // we take these values cause we have conditions by taking these 
+    //there is no need to add check points because by these our array will not overflow
+    while(start<=end){
+        mid = start + (end - start)/2;
+        if(arr[mid-1]<arr[mid] && arr[mid]>arr[mid+1]){
+            cout<<mid;
             break;
         }
-        // Check if the left half is sorted
-        if(arr[start] <= arr[mid]){
-            if(arr[start] <= tar && tar < arr[mid]){ // Logic error: should compare with arr[mid]
-                end = mid - 1;
-            }
-            else{
-                start = mid + 1;
-            }
+        if(arr[mid-1]<arr[mid]){
+            start = mid+1;
         }
-        // Otherwise, the right half must be sorted
         else{
-            if(arr[mid] <= tar && tar <= arr[end]){
-                start = mid + 1;
-            }
-            else{
-                end = mid - 1;
-            }
+            end = mid-1;
         }
     }
-    return 0;
 }
-
