@@ -212,34 +212,87 @@ using namespace std;
 
 //perfect code :-
 
-int main()
-{
-    vector<int> arr = {1, 1, 2, 3, 3, 4, 4, 8, 8};
-    int start = 0, end = arr.size() - 1, mid;
+// int main()
+// {
+//     vector<int> arr = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+//     int start = 0, end = arr.size() - 1, mid;
 
-    while (start < end)
+//     while (start < end)
+//     {
+//         mid = start + (end - start) / 2;
+
+//         // Ensure mid is the first in the pair
+//         if (mid % 2 == 1)
+//         {
+//             mid--;
+//         }
+
+//         if (arr[mid] == arr[mid + 1])
+//         {
+//             // Unique element is after this pair
+//             start = mid + 2;
+//         }
+//         else
+//         {
+//             // Unique element is before or at mid
+//             end = mid;
+//         }
+//     }
+
+//     // When loop ends, start == end, which is the index of the single element
+//     cout << arr[start] << endl;
+//     return 0;
+// }
+
+
+//Teacher's code:-
+
+int main(){
+    vector<int> arr = {1};
+    int start = 0, end = arr.size()-1, mid;
+    if (arr.size() == 1)
     {
-        mid = start + (end - start) / 2;
+        cout << arr[0];
+        return 0;
+    }
+    while(start<end){
+        mid = start+ (end - start)/2;
 
-        // Ensure mid is the first in the pair
-        if (mid % 2 == 1)
+
+        if (mid == 0 && arr[mid] == arr[mid + 1])
         {
-            mid--;
+            cout << arr[mid];
+            break;
+        }
+        if(mid == arr.size()-1 && arr[mid] == arr[mid-1]){
+            cout << arr[mid];
+            break;
+        }
+        if(arr[mid-1] != arr[mid] && arr[mid+1] != arr[mid]){
+            cout<<arr[mid];
+            break;
         }
 
-        if (arr[mid] == arr[mid + 1])
-        {
-            // Unique element is after this pair
-            start = mid + 2;
+        if(mid%2==0){
+
+            if(arr[mid-1] == arr[mid]){
+                end = mid - 1;
+            }
+            else{
+
+                start = mid + 1;
+            }
         }
-        else
-        {
-            // Unique element is before or at mid
-            end = mid;
+        else{
+
+            if (arr[mid - 1] == arr[mid])
+            {
+                start = mid + 1;
+            }
+            else
+            {
+                end = mid - 1;
+            }
         }
     }
-
-    // When loop ends, start == end, which is the index of the single element
-    cout << arr[start] << endl;
-    return 0;
 }
