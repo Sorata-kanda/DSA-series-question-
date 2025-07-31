@@ -151,23 +151,95 @@ using namespace std;
 //2. array should be always in decreasing and increasing order
 //3. peak element can't exists on start or end [important condition]
 
-int main(){
-    vector<int> arr = {0,3,8,9,5,2};
-    // int start = 0, end = arr.size()-1, mid;
-    int start = 1, end = arr.size()-2 ,mid; 
-    // we take these values cause we have conditions by taking these 
-    //there is no need to add check points because by these our array will not overflow
-    while(start<=end){
-        mid = start + (end - start)/2;
-        if(arr[mid-1]<arr[mid] && arr[mid]>arr[mid+1]){
-            cout<<mid;
-            break;
+// int main(){
+//     vector<int> arr = {0,3,8,9,5,2};
+//     // int start = 0, end = arr.size()-1, mid;
+//     int start = 1, end = arr.size()-2 ,mid; 
+//     // we take these values cause we have conditions by taking these 
+//     //there is no need to add check points because by these our array will not overflow
+//     while(start<=end){
+//         mid = start + (end - start)/2;
+//         if(arr[mid-1]<arr[mid] && arr[mid]>arr[mid+1]){
+//             cout<<mid;
+//             break;
+//         }
+//         if(arr[mid-1]<arr[mid]){
+//             start = mid+1;
+//         }
+//         else{
+//             end = mid-1;
+//         }
+//     }
+// }
+
+
+//---------------------------------single element in sorted array-------------------------------------------------------
+                    // This is a wrong code written by me! 
+
+                    // int main(){
+                    //     vector<int> arr = {1,1,2,3,3,4,4,8,8};
+                    //     int start = 0, end = arr.size()-1, mid;
+                    //     while(start<end){
+                    //         mid = start+ (end - start)/2;
+                    //         if(arr[mid-1] != arr[mid] && arr[mid+1] != arr[mid]){
+                    //             cout<<arr[mid];
+                    //             break;
+                    //         }
+
+                    //         if(mid%2==0){
+                            
+                    //             if(arr[mid-1] == arr[mid]){
+                    //                 end = mid - 1;
+                    //             }
+                    //             else{
+                                
+                    //                 start = mid + 1;
+                    //             }
+                    //         }
+                    //         else{
+
+                    //             if (arr[mid - 1] == arr[mid])
+                    //             {
+                    //                 start = mid + 1;
+                    //             }
+                    //             else
+                    //             {
+                    //                 end = mid - 1;
+                    //             }
+                    //         }
+                    //     }
+                    // }
+
+//perfect code :-
+
+int main()
+{
+    vector<int> arr = {1, 1, 2, 3, 3, 4, 4, 8, 8};
+    int start = 0, end = arr.size() - 1, mid;
+
+    while (start < end)
+    {
+        mid = start + (end - start) / 2;
+
+        // Ensure mid is the first in the pair
+        if (mid % 2 == 1)
+        {
+            mid--;
         }
-        if(arr[mid-1]<arr[mid]){
-            start = mid+1;
+
+        if (arr[mid] == arr[mid + 1])
+        {
+            // Unique element is after this pair
+            start = mid + 2;
         }
-        else{
-            end = mid-1;
+        else
+        {
+            // Unique element is before or at mid
+            end = mid;
         }
     }
+
+    // When loop ends, start == end, which is the index of the single element
+    cout << arr[start] << endl;
+    return 0;
 }
