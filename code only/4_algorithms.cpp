@@ -247,52 +247,74 @@ using namespace std;
 
 //Teacher's code:-
 
+// int main(){
+//     vector<int> arr = {1};
+//     int start = 0, end = arr.size()-1, mid;
+//     if (arr.size() == 1)
+//     {
+//         cout << arr[0];
+//         return 0;
+//     }
+//     while(start<end){
+//         mid = start+ (end - start)/2;
+
+
+//         if (mid == 0 && arr[mid] == arr[mid + 1])
+//         {
+//             cout << arr[mid];
+//             break;
+//         }
+//         if(mid == arr.size()-1 && arr[mid] == arr[mid-1]){
+//             cout << arr[mid];
+//             break;
+//         }
+//         if(arr[mid-1] != arr[mid] && arr[mid+1] != arr[mid]){
+//             cout<<arr[mid];
+//             break;
+//         }
+
+//         if(mid%2==0){
+
+//             if(arr[mid-1] == arr[mid]){
+//                 end = mid - 1;
+//             }
+//             else{
+
+//                 start = mid + 1;
+//             }
+//         }
+//         else{
+
+//             if (arr[mid - 1] == arr[mid])
+//             {
+//                 start = mid + 1;
+//             }
+//             else
+//             {
+//                 end = mid - 1;
+//             }
+//         }
+//     }
+// }
+
+//----------------------------------palindrome number-------------------------------------------------------
 int main(){
-    vector<int> arr = {1};
-    int start = 0, end = arr.size()-1, mid;
-    if (arr.size() == 1)
-    {
-        cout << arr[0];
-        return 0;
+    int x = -121;
+    int temp = x;
+    int y=0;
+    if(x<0){
+        cout<<"false";
     }
-    while(start<end){
-        mid = start+ (end - start)/2;
-
-
-        if (mid == 0 && arr[mid] == arr[mid + 1])
-        {
-            cout << arr[mid];
-            break;
+    else{
+        while(x>0){
+            y = y*10 + x%10;
+            x/=10;
+            // cout<<y<<" ";
         }
-        if(mid == arr.size()-1 && arr[mid] == arr[mid-1]){
-            cout << arr[mid];
-            break;
-        }
-        if(arr[mid-1] != arr[mid] && arr[mid+1] != arr[mid]){
-            cout<<arr[mid];
-            break;
-        }
-
-        if(mid%2==0){
-
-            if(arr[mid-1] == arr[mid]){
-                end = mid - 1;
-            }
-            else{
-
-                start = mid + 1;
-            }
-        }
-        else{
-
-            if (arr[mid - 1] == arr[mid])
-            {
-                start = mid + 1;
-            }
-            else
-            {
-                end = mid - 1;
-            }
+        if(temp==y){
+            cout<<"true";
+        }else{
+            cout<<"false";
         }
     }
 }
