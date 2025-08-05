@@ -324,22 +324,77 @@ using namespace std;
 
 //----------------------------------Book allocation [Hard] [not uploaded]------------------------------------------------
 
-bool isValid(vector<int> arr, int n, int m, int mid){
-    int student = 1, pages =0;
+// bool isValid(vector<int> arr, int n, int m, int mid){
+//     int student = 1, pages =0;
 
-    for(int i=0;i<n;i++){
-        if(arr[i]>mid){
-            return false;
-        }
+//     for(int i=0;i<n;i++){
+//         if(arr[i]>mid){
+//             return false;
+//         }
 
-        if(pages + arr[i]<=mid){
-            pages += arr[i];
+//         if(pages + arr[i]<=mid){
+//             pages += arr[i];
+//         }else{
+//             student++;
+//             pages = arr[i];
+//         }
+//     }
+//     if(student == m){
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+// }
+
+
+
+// int allocateBooks(vector<int> arr, int n, int m){
+//     if(m>n){
+//         return -1;
+//     }
+//     int summ =0;
+//     for(int value: arr){
+//         summ += value; 
+//     }
+//     int start =0 ,end = summ,ans=-1;
+//     while(start<=end){
+//         int mid = start + (end -start)/2 ;
+//         if(isValid(arr, n, m, mid)){
+//             ans = mid;
+//             end = mid-1;
+//         }
+//         else{
+//             start = mid+1;
+//         }
+//     }
+//     return ans;
+// }
+
+// int main(){
+//     // vector<int> arr = {2, 1, 3, 4};
+//     vector<int> arr = {15,17,20};
+    
+//     int n=4 ,m=2;
+
+//     cout<< allocateBooks(arr,n,m)<<endl;
+//     return 0;
+// }
+
+
+//---------------------------Painter Partition problem [Hard] [not uploaded]----------------------------------
+
+bool isPossible(vector<int> arr, int n, int m, int mid){
+    int painters =1, time = 0;
+    for(int i=0; i<n; i++){
+        if(time + arr[i]<=mid){
+            time += arr[i];
         }else{
-            student++;
-            pages = arr[i];
+            painters++;
+            time = arr[i];
         }
     }
-    if(student == m){
+    if(painters <= m){
         return true;
     }
     else{
@@ -347,36 +402,37 @@ bool isValid(vector<int> arr, int n, int m, int mid){
     }
 }
 
-
-
-int allocateBooks(vector<int> arr, int n, int m){
-    if(m>n){
-        return -1;
+int minTimeToPaint(vector<int> arr, int n, int m){
+    int summ = 0;
+    int maxVal = INT32_MIN;
+    for(int i=0; i<n;i++){
+        summ += arr[i];
+        maxVal = max(maxVal, arr[i]);
     }
-    int summ =0;
-    for(int value: arr){
-        summ += value; 
-    }
-    int start =0 ,end = summ,ans=-1;
-    while(start<=end){
-        int mid = start + (end -start)/2 ;
-        if(isValid(arr, n, m, mid)){
+    
+    int start = maxVal;
+    int end = summ;
+    int ans = -1;
+
+    while (start <=end)
+    {
+        int mid = start + (end-start)/2;
+        if(isPossible(arr, n, m, mid)){
             ans = mid;
-            end = mid-1;
+            end = mid -1;
         }
         else{
             start = mid+1;
         }
     }
     return ans;
-}
-
-int main(){
-    // vector<int> arr = {2, 1, 3, 4};
-    vector<int> arr = {15,17,20};
     
-    int n=4 ,m=2;
+}
+int main(){
+    vector<int> arr = {40, 30, 10, 20};
+    int n=4 , m=2;
 
-    cout<< allocateBooks(arr,n,m)<<endl;
+    cout<<minTimeToPaint(arr, n, m)<<endl;
     return 0;
+
 }
