@@ -1,5 +1,6 @@
 #include<iostream>
 #include<windows.h>
+#include <climits> // just so that we can use INT_MIN and INT_MAX (for some reason they are not wokring without this header)
 #include<vector>
 #include<algorithm>
 using namespace std;

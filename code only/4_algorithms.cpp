@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<vector>
+#include <climits>
 using namespace std;
 
 //--------------------------------------Binary serach algoo---------------------------------------------
@@ -404,7 +405,7 @@ bool isPossible(vector<int> arr, int n, int m, int mid){
 
 int minTimeToPaint(vector<int> arr, int n, int m){
     int summ = 0;
-    int maxVal = INT32_MIN;
+    int maxVal = INT_MIN;
     for(int i=0; i<n;i++){
         summ += arr[i];
         maxVal = max(maxVal, arr[i]);
