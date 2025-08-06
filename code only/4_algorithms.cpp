@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include <climits>
+#include <algorithm>
 using namespace std;
 
 //--------------------------------------Binary serach algoo---------------------------------------------
@@ -385,55 +386,98 @@ using namespace std;
 
 //---------------------------Painter Partition problem [Hard] [not uploaded]----------------------------------
 
-bool isPossible(vector<int> arr, int n, int m, int mid){
-    int painters =1, time = 0;
-    for(int i=0; i<n; i++){
-        if(time + arr[i]<=mid){
-            time += arr[i];
-        }else{
-            painters++;
-            time = arr[i];
+// bool isPossible(vector<int> arr, int n, int m, int mid){
+//     int painters =1, time = 0;
+//     for(int i=0; i<n; i++){
+//         if(time + arr[i]<=mid){
+//             time += arr[i];
+//         }else{
+//             painters++;
+//             time = arr[i];
+//         }
+//     }
+//     if(painters <= m){
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+// }
+
+// int minTimeToPaint(vector<int> arr, int n, int m){
+//     int summ = 0;
+//     int maxVal = INT_MIN;
+//     for(int i=0; i<n;i++){
+//         summ += arr[i];
+//         maxVal = max(maxVal, arr[i]);
+//     }
+    
+//     int start = maxVal;
+//     int end = summ;
+//     int ans = -1;
+
+//     while (start <=end)
+//     {
+//         int mid = start + (end-start)/2;
+//         if(isPossible(arr, n, m, mid)){
+//             ans = mid;
+//             end = mid -1;
+//         }
+//         else{
+//             start = mid+1;
+//         }
+//     }
+//     return ans;
+    
+// }
+// int main(){
+//     vector<int> arr = {40, 30, 10, 20};
+//     int n=4 , m=2;
+
+//     cout<<minTimeToPaint(arr, n, m)<<endl;
+//     return 0;
+
+// }
+
+
+//-----------------------------------------Aggresive cows problem [Hard] [not uploaded]------------------------------------
+
+bool isValid(vector<int> arr, int n, int c,int mid){
+    int cows= 1 , last = arr[0];
+    for(int i=1; i<n;i++){
+        if(arr[i] - last >= mid){
+            cows ++ ;
+            last  = arr[i];
+        }
+        if(cows == c){
+            return true;
         }
     }
-    if(painters <= m){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return false;
 }
 
-int minTimeToPaint(vector<int> arr, int n, int m){
-    int summ = 0;
-    int maxVal = INT_MIN;
-    for(int i=0; i<n;i++){
-        summ += arr[i];
-        maxVal = max(maxVal, arr[i]);
-    }
-    
-    int start = maxVal;
-    int end = summ;
+int finder(vector<int> arr, int n, int c){
+    sort(arr.begin(), arr.end());
+    int start = 1; int end = arr[n-1]-arr[0];
     int ans = -1;
-
-    while (start <=end)
+    while (start<=end)
     {
-        int mid = start + (end-start)/2;
-        if(isPossible(arr, n, m, mid)){
+        int mid = start + (end -start)/2; 
+        if(isValid(arr, n,c,mid)){
             ans = mid;
-            end = mid -1;
-        }
-        else{
             start = mid+1;
+
+        }else{
+            end = mid-1;
         }
     }
     return ans;
-    
 }
-int main(){
-    vector<int> arr = {40, 30, 10, 20};
-    int n=4 , m=2;
 
-    cout<<minTimeToPaint(arr, n, m)<<endl;
-    return 0;
+int main(){
+    vector<int> arr = {1,2,8,4,9};
+    int n = 5, c = 3;
+
+    cout<<finder(arr,n,c)<<endl;
 
 }
