@@ -442,42 +442,55 @@ using namespace std;
 
 //-----------------------------------------Aggresive cows problem [Hard] [not uploaded]------------------------------------
 
-bool isValid(vector<int> arr, int n, int c,int mid){
-    int cows= 1 , last = arr[0];
-    for(int i=1; i<n;i++){
-        if(arr[i] - last >= mid){
-            cows ++ ;
-            last  = arr[i];
-        }
-        if(cows == c){
-            return true;
-        }
-    }
-    return false;
-}
+// bool isValid(vector<int> arr, int n, int c,int mid){
+//     int cows= 1 , last = arr[0];
+//     for(int i=1; i<n;i++){
+//         if(arr[i] - last >= mid){
+//             cows ++ ;
+//             last  = arr[i];
+//         }
+//         if(cows == c){
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
-int finder(vector<int> arr, int n, int c){
-    sort(arr.begin(), arr.end());
-    int start = 1; int end = arr[n-1]-arr[0];
-    int ans = -1;
-    while (start<=end)
-    {
-        int mid = start + (end -start)/2; 
-        if(isValid(arr, n,c,mid)){
-            ans = mid;
-            start = mid+1;
+// int finder(vector<int> arr, int n, int c){
+//     sort(arr.begin(), arr.end());
+//     int start = 1; int end = arr[n-1]-arr[0];
+//     int ans = -1;
+//     while (start<=end)
+//     {
+//         int mid = start + (end -start)/2; 
+//         if(isValid(arr, n,c,mid)){
+//             ans = mid;
+//             start = mid+1;
 
-        }else{
-            end = mid-1;
-        }
-    }
-    return ans;
-}
+//         }else{
+//             end = mid-1;
+//         }
+//     }
+//     return ans;
+// }
 
-int main(){
-    vector<int> arr = {1,2,8,4,9};
-    int n = 5, c = 3;
+// int main(){
+//     vector<int> arr = {1,2,8,4,9};
+//     int n = 5, c = 3;
 
-    cout<<finder(arr,n,c)<<endl;
+//     cout<<finder(arr,n,c)<<endl;
 
-}
+// }
+
+
+/* 
+=======================================NOTICE=======================================
+
+                DATE :- (Thrusday) 8 AUG 2025 [revise previous hard question and understood them]
+                [The next topic is sorting and I will start that from MONDAY]
+                [No extra question added]
+                [Thanks]
+
+
+*/
+ 
