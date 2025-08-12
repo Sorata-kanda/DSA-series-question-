@@ -497,77 +497,116 @@ using namespace std;
 // ----------------------------------Sorting----------------------------------------
 
 //===============Bubble Sort==================// O(n^2) [not good techique]
-void bubble(vector<int> arr, int n)
+// void bubble(vector<int> arr, int n)
+// {
+//     for (int i = 0; i < n - 1; i++)
+//     {   
+//         bool isSorted = false;
+//         for (int j = 0; j < n - i - 1; j++)
+//         {
+//             if (arr[j] > arr[j + 1])
+//             {
+//                 swap(arr[j], arr[j + 1]);
+//                 isSorted = true;
+//             }
+//         }
+//         if(!isSorted){
+//             return;
+//         }
+//     }
+//     cout << "Bubble:     ";
+//     for (int i : arr)
+//     {
+//         cout << i << " ";
+//     }
+//     cout<<endl;
+// }
+
+// // ====================selection sort===============
+// void selection(vector<int> arr, int n){
+//     for(int i=0; i<n;i++){
+//         int smallest = i;
+//         for(int j=i+1; j<n; j++){
+//             if(arr[j]< arr[smallest]){
+//                 smallest = j;   
+//             }
+//         }
+//         swap(arr[i],arr[smallest]);
+//     }
+//     cout << "Selection:  ";
+//     for (int i : arr)
+//     {
+//         cout << i << " ";
+//     }
+//     cout<<endl;
+// }
+
+
+// //==============insertion sort==========
+// void insertion(vector<int> arr, int n){ //O(n^2)
+//     for(int i=1; i<n; i++){
+//         int curr = arr[i];
+//         int prev = i-1;
+//         while(prev>=0 && arr[prev]>curr){
+//             arr[prev+1] = arr[prev];
+//             prev--;
+//         }
+//         arr[prev+1] = curr;
+//     }
+//     cout<< "Insertion:  ";
+//     for (int i : arr)
+//     {
+//         cout << i << " ";
+//     }
+//     cout << endl;
+}
+
+// int main(){
+//     vector<int> arr = {5,4,3,2,1};
+//     int n = arr.size();
+//     cout << "\n\n";
+//     bubble(arr,n);
+//     selection(arr, n);
+//     insertion(arr, n);
+//     cout << "\n\n";
+// }
+
+
+
+
+// -----------------------------------------0s,1s,2s   DNF sorting algo---------------------
+
+// ==========Dutch national algorith============
+
+void sortColors(vector<int> &nums)
 {
-    for (int i = 0; i < n - 1; i++)
-    {   
-        bool isSorted = false;
-        for (int j = 0; j < n - i - 1; j++)
+    int n = nums.size();
+    int mid = 0, high = n - 1, low = 0;
+    while (mid <= high)
+    {
+        if (nums[mid] == 0)
         {
-            if (arr[j] > arr[j + 1])
-            {
-                swap(arr[j], arr[j + 1]);
-                isSorted = true;
-            }
+            swap(nums[low], nums[mid]);
+            mid++;
+            low++;
         }
-        if(!isSorted){
-            return;
+        else if (nums[mid] == 1)
+        {
+            mid++;
+        }
+        else
+        {
+            swap(nums[high], nums[mid]);
+            high--;
         }
     }
-    cout << "Bubble:     ";
-    for (int i : arr)
-    {
-        cout << i << " ";
-    }
-    cout<<endl;
-}
-
-// ====================selection sort===============
-void selection(vector<int> arr, int n){
-    for(int i=0; i<n;i++){
-        int smallest = i;
-        for(int j=i+1; j<n; j++){
-            if(arr[j]< arr[smallest]){
-                smallest = j;   
-            }
-        }
-        swap(arr[i],arr[smallest]);
-    }
-    cout << "Selection:  ";
-    for (int i : arr)
-    {
-        cout << i << " ";
-    }
-    cout<<endl;
-}
-
-
-//==============insertion sort==========
-void insertion(vector<int> arr, int n){ //O(n^2)
-    for(int i=1; i<n; i++){
-        int curr = arr[i];
-        int prev = i-1;
-        while(prev>=0 && arr[prev]>curr){
-            arr[prev+1] = arr[prev];
-            prev--;
-        }
-        arr[prev+1] = curr;
-    }
-    cout<< "Insertion:  ";
-    for (int i : arr)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
 }
 
 int main(){
-    vector<int> arr = {5,4,3,2,1};
-    int n = arr.size();
-    cout << "\n\n";
-    bubble(arr,n);
-    selection(arr, n);
-    insertion(arr, n);
-    cout << "\n\n";
+    vector<int> nums = {1,0,2,1,0,2};
+    sortColors(nums);
+    for (int i : nums)
+    {
+        cout << i << " ";
+    }
 }
-
