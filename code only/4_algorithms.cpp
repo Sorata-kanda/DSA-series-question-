@@ -578,34 +578,74 @@ using namespace std;
 
 // ==========Dutch national algorith============
 
-void sortColors(vector<int> &nums)
+// void sortColors(vector<int> &nums)
+// {
+//     int n = nums.size();
+//     int mid = 0, high = n - 1, low = 0;
+//     while (mid <= high)
+//     {
+//         if (nums[mid] == 0)
+//         {
+//             swap(nums[low], nums[mid]);
+//             mid++;
+//             low++;
+//         }
+//         else if (nums[mid] == 1)
+//         {
+//             mid++;
+//         }
+//         else
+//         {
+//             swap(nums[high], nums[mid]);
+//             high--;
+//         }
+//     }
+// }
+
+// int main(){
+//     vector<int> nums = {1,0,2,1,0,2};
+//     sortColors(nums);
+//     for (int i : nums)
+//     {
+//         cout << i << " ";
+//     }
+// }
+
+
+
+// ------------------------------------Merge Sort--------------------------------------
+
+void merge(vector<int> &a, int m, vector<int> &b, int n)
 {
-    int n = nums.size();
-    int mid = 0, high = n - 1, low = 0;
-    while (mid <= high)
+    int idx = m + n - 1, i = m - 1, j = n - 1;
+    while (i >= 0 && j >= 0)
     {
-        if (nums[mid] == 0)
+        if (a[i] >= b[j])
         {
-            swap(nums[low], nums[mid]);
-            mid++;
-            low++;
-        }
-        else if (nums[mid] == 1)
-        {
-            mid++;
+            a[idx] = a[i];
+            i--;
+            idx--;
         }
         else
         {
-            swap(nums[high], nums[mid]);
-            high--;
+            a[idx] = b[j];
+            idx--;
+            j--;
         }
+    }
+    while (j >= 0)
+    {
+        a[idx] = b[j];
+        idx--;
+        j--;
     }
 }
 
 int main(){
-    vector<int> nums = {1,0,2,1,0,2};
-    sortColors(nums);
-    for (int i : nums)
+    vector<int> a = {1, 2, 3, 0, 0, 0};
+    vector<int> b = {2, 5, 6};
+    merge(a, 3, b, 3);
+    for (int i : a)
     {
         cout << i << " ";
     }
