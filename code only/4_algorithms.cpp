@@ -613,39 +613,84 @@ using namespace std;
 
 
 
-// ------------------------------------Merge Sort--------------------------------------
+// ------------------------------------Merge 2 Sort--------------------------------------
 
-void merge(vector<int> &a, int m, vector<int> &b, int n)
+// void merge(vector<int> &a, int m, vector<int> &b, int n)
+// {
+//     int idx = m + n - 1, i = m - 1, j = n - 1;
+//     while (i >= 0 && j >= 0)
+//     {
+//         if (a[i] >= b[j])
+//         {
+//             a[idx] = a[i];
+//             i--;
+//             idx--;
+//         }
+//         else
+//         {
+//             a[idx] = b[j];
+//             idx--;
+//             j--;
+//         }
+//     }
+//     while (j >= 0)
+//     {
+//         a[idx] = b[j];
+//         idx--;
+//         j--;
+//     }
+// }
+
+// int main(){
+//     vector<int> a = {1, 2, 3, 0, 0, 0};
+//     vector<int> b = {2, 5, 6};
+//     merge(a, 3, b, 3);
+//     for (int i : a)
+//     {
+//         cout << i << " ";
+//     }
+// }
+
+
+// ------------------------------------Next Permutation---------------------------------
+void nextPermutation(vector<int> &nums)
 {
-    int idx = m + n - 1, i = m - 1, j = n - 1;
-    while (i >= 0 && j >= 0)
+    int pivot = -1, n = nums.size();
+    for (int i = n - 2; i >= 0; i--)
     {
-        if (a[i] >= b[j])
+        if (nums[i] < nums[i + 1])
         {
-            a[idx] = a[i];
-            i--;
-            idx--;
-        }
-        else
-        {
-            a[idx] = b[j];
-            idx--;
-            j--;
+            pivot = i;
+            break;
         }
     }
-    while (j >= 0)
+    if (pivot == -1)
     {
-        a[idx] = b[j];
-        idx--;
-        j--;
+        reverse(nums.begin(), nums.end());
+        return;
     }
+
+    for (int i = n - 1; i > pivot; i--)
+    {
+        if (nums[i] > nums[pivot])
+        {
+            swap(nums[i], nums[pivot]);
+            break;
+        }
+    }
+
+    reverse(nums.begin() + pivot + 1, nums.end());
+    // The upper line is a alternative of the below function
+    //  int i = pivot+1, j = n-1;
+    //  while(i<=j){
+    //      swap(nums[i++],nums[j--]);
+    //  }
 }
 
 int main(){
-    vector<int> a = {1, 2, 3, 0, 0, 0};
-    vector<int> b = {2, 5, 6};
-    merge(a, 3, b, 3);
-    for (int i : a)
+    vector<int> nums = {1, 2, 4, 5, 6, 3};
+    nextPermutation(nums);
+    for (int i : nums)
     {
         cout << i << " ";
     }
