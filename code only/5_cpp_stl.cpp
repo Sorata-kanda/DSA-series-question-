@@ -108,7 +108,6 @@ int main(){
 
     //Stack:-  {LIFO (last in forst out) }
     // all function :- push, emplace, top, pop, size, empty, swap
-/*************  ✨ Windsurf Command 🌟  *************/
     stack<int> s;
 
     s.push(1);
@@ -117,29 +116,22 @@ int main(){
     s.push(4);
     s.push(5);
 
-    while (!s.empty())
-    {
-        cout << s.top() << " ";
-        s.pop();
-    }
-    // cout<<endl;
+    stack<int> s2;
+    s2.swap(s);
+
+    cout << "s size: " << s.size() << endl;
+    cout << "s2 size: " << s2.size() << endl;
 
     
-
-    stack<int> s2;
-    swap(s, s2); // swapping the elements of stack s to s2
-    s2.swap(s);
     while (!s2.empty())
     {
         cout << s2.top() << " ";
         s2.pop();
     }
 
-    // cout << endl;
+    cout << endl;
 
-    cout<<"s size : " << s.size()<<endl;
-    cout << "s2 size : " << s2.size() << endl;
-/*******  200f8a01-4d66-4395-b17e-c99c5106d2b7  *******/
+    
 
     return 0;
     }
