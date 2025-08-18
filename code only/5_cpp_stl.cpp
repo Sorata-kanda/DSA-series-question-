@@ -3,6 +3,9 @@
 #include<list>
 #include<deque>
 #include<stack>
+#include<queue>
+#include<map>
+#include<unordered_map>
 using namespace std;
 
 int main(){
@@ -108,30 +111,142 @@ int main(){
 
     //Stack:-  {LIFO (last in forst out) }
     // all function :- push, emplace, top, pop, size, empty, swap
-    stack<int> s;
+    // stack<int> s;
 
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.push(4);
-    s.push(5);
+    // s.push(1);
+    // s.push(2);
+    // s.push(3);
+    // s.push(4);
+    // s.push(5);
 
-    stack<int> s2;
-    s2.swap(s);
+    // stack<int> s2;
+    // s2.swap(s);
 
-    cout << "s size: " << s.size() << endl;
-    cout << "s2 size: " << s2.size() << endl;
+    // cout << "s size: " << s.size() << endl;
+    // cout << "s2 size: " << s2.size() << endl;
 
     
-    while (!s2.empty())
-    {
-        cout << s2.top() << " ";
-        s2.pop();
+    // while (!s2.empty())
+    // {
+    //     cout << s2.top() << " ";
+    //     s2.pop();
+    // }
+
+    // cout << endl;
+
+
+    //Queue (FIFO [forst in first out!!])
+
+    // queue<int> s;
+
+    // s.push(1);
+    // s.push(2);
+    // s.push(3);
+    // s.push(4);
+    // s.push(5);
+
+    // while(!s.empty()){
+    //     cout << s.front() << endl;
+    //     s.pop();
+        
+    // }
+
+
+
+    //Priority queue
+    // priority_queue<int> pq;
+
+    // pq.push(5);
+    // pq.push(2);
+    // pq.push(33);
+    // pq.push(46);
+    // pq.push(2);
+
+    // while(!pq.empty()){
+    //     cout<<pq.top()<<endl;
+    //     pq.pop();
+    // }
+
+
+
+    //reverse order:-
+
+    // priority_queue<int, vector<int>, greater<int>> pq;
+
+    // pq.push(5);
+    // pq.push(2);
+    // pq.push(33);
+    // pq.push(46);
+    // pq.push(2);
+
+    // while (!pq.empty())
+    // {
+    //     cout << pq.top() << endl;
+    //     pq.pop();
+    // }
+
+
+
+    //Map [key & value pairs (key are unique while value can have duplicates)]
+
+    // map<string,int> m;
+    // m["Rahul   "] = 1;
+    // m["Avik    "] = 2;
+    // m["Raj     "] = 3;
+
+    // m.insert({"insert  " , 4});
+    // m.emplace("emplace ",5);
+    // m.erase("Avik    ");
+
+    // for(auto p: m){
+    //     cout<< p.first << " : "<< p.second<<endl;
+    // }
+    // cout<<endl;
+    // cout<< "count function : " << m.count("Rahul   ")<<"\n\n";
+
+    // //find function - if it found the target it returns it's iterator(not int), if not then it returns the m.end() value
+
+    
+    // if(m.find("Rahul   ") != m.end()){
+    //     cout<<"FOUND!\n";
+    // }else{
+    //     cout<<"Not found\n";
+    // }
+
+
+
+    //multi map [it can store duplicates, cause of that we can't use:-  m[] = example ,, we have to use insert or emplace]
+    // multimap<string,int> mm;
+    
+    // mm.emplace("robot", 100);
+    // mm.emplace("robot", 60);
+    // mm.emplace("robot", 0);
+    // mm.emplace("robot", 10);
+    // mm.emplace("robot", 500);
+    // cout << "count of robot: "<<mm.count("robot")<<endl;
+
+    // // mm.erase("robot"); //This will erase the whole map
+    // mm.erase(mm.find("robot")); // but this will only remove one, as this will remove that specific itreator/address
+    
+    // for(auto p : mm){
+    //     cout<< p.first << " : "<<p.second<<endl;
+    // }
+    // cout<< "count of robot: "<< mm.count("robot")<<endl;
+
+
+
+    //unordered map :- it gives data in random pattern // also it have O(1) time complexity while map have O(logn)
+
+    unordered_map<string, int> mm;
+
+    mm.emplace("robot", 100);
+    mm.emplace("unknow thing 1", 60);
+    mm.emplace("unknow thing 2", 0);
+    mm.emplace("unknow thing 3", 10);
+    mm.emplace("unknow thing 4", 500);
+
+    for(auto p : mm){
+        cout<< p.first << " : "<<p.second<<endl;
     }
-
-    cout << endl;
-
-    
-
     return 0;
     }
