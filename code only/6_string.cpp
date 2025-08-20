@@ -2,9 +2,23 @@
 #include <string.h>
 #include<string>
 #include <algorithm>
-using namespace std; 
+using namespace std;
 
-int main(){
+bool ispallindrome(string str){
+    string rev = str; 
+    reverse(rev.begin(), rev.end());
+
+    if (str ==rev)
+    {
+        return true;
+    }
+    else{
+        return false;
+    }
+} 
+
+int main()
+{
     // char str[] = "rahul Jangra";
     // cout<<str<<endl;
     // cout << strlen(str) << endl;
@@ -69,24 +83,30 @@ int main(){
     // cout<<str4<<endl;
 
 
-    string str5 = "Rahul Jangra.";
-    for(int i=0; i<str5.length();i++){
-        cout<<str5[i]<<" ";
-    }
-    cout<<endl;
+    // string str5 = "Rahul Jangra.";
+    // for(int i=0; i<str5.length();i++){
+    //     cout<<str5[i]<<" ";
+    // }
+    // cout<<endl;
 
-    //for each loop 
-    cout<< "Output form for each loop: "<<endl;
-    for(char ch: str5){
-        cout<<ch<<" ";
-    }
-    cout<<endl;
+    // //for each loop 
+    // cout<< "Output form for each loop: "<<endl;
+    // for(char ch: str5){
+    //     cout<<ch<<" ";
+    // }
+    // cout<<endl;
 
-    //reverse of string;
+    // //reverse of string;
     
-    cout<<"Reverse string: ";
-    reverse(str5.begin(),str5.end());
-    cout<<str5<<" ";
-    cout<<endl;
+    // cout<<"Reverse string: ";
+    // reverse(str5.begin(),str5.end());
+    // cout<<str5<<" ";
+    // cout<<endl;
 
+
+
+    //Question :- check if a string is palindrome or not?
+
+    string strr = "madam";
+    cout<<ispallindrome(strr)<<endl;
 }
