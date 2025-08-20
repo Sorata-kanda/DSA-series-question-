@@ -1,5 +1,7 @@
 #include<iostream>
 #include <string.h>
+#include<string>
+#include <algorithm>
 using namespace std; 
 
 int main(){
@@ -35,11 +37,56 @@ int main(){
 
 
     //let's count char in a string
-    char str5[] = "Rahul Jangra";
-    int len =0;
-    for(int i=0; str5[i]!='\0';i++){
-        len++;
+    // char str5[] = "Rahul Jangra";
+    // int len =0;
+    // for(int i=0; str5[i]!='\0';i++){
+    //     len++;
+    // }
+    // cout<<"Length: "<<len<<endl;
+
+
+
+
+    //There is strings in c++ and we can use it instead of using char
+
+    // string str = "Rahul jangra";
+    // cout<<str<<endl;
+    // str = "nothing";
+    // cout<<str<<endl;
+
+
+    // string str1 = "Rahul ";
+    // string str2 = "Jangra";
+    // string str3 = str1+str2;
+    // cout<<str3<<endl;
+
+    // cout<<(str1==str2)<<endl;
+    // cout<<str1.length()<<endl;
+
+
+    // string str4;
+    // getline(cin,str4);
+    // cout<<str4<<endl;
+
+
+    string str5 = "Rahul Jangra.";
+    for(int i=0; i<str5.length();i++){
+        cout<<str5[i]<<" ";
     }
-    cout<<"Length: "<<len<<endl;
+    cout<<endl;
+
+    //for each loop 
+    cout<< "Output form for each loop: "<<endl;
+    for(char ch: str5){
+        cout<<ch<<" ";
+    }
+    cout<<endl;
+
+    //reverse of string;
+    
+    cout<<"Reverse string: ";
+    reverse(str5.begin(),str5.end());
+    cout<<str5<<" ";
+    cout<<endl;
 
 }
