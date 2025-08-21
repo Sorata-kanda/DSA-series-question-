@@ -4,21 +4,21 @@
 #include <algorithm>
 using namespace std;
 
-bool ispallindrome(string str){
-    string rev = str; 
-    reverse(rev.begin(), rev.end());
+// bool ispallindrome(string str){
+//     string rev = str; 
+//     reverse(rev.begin(), rev.end());
 
-    if (str ==rev)
-    {
-        return true;
-    }
-    else{
-        return false;
-    }
-} 
+//     if (str ==rev)
+//     {
+//         return true;
+//     }
+//     else{
+//         return false;
+//     }
+// } 
 
-int main()
-{
+// int main()
+// {
     // char str[] = "rahul Jangra";
     // cout<<str<<endl;
     // cout << strlen(str) << endl;
@@ -107,6 +107,66 @@ int main()
 
     //Question :- check if a string is palindrome or not?
 
-    string strr = "madam";
-    cout<<ispallindrome(strr)<<endl;
+    // string strr = "ab5ba";
+    // cout<<ispallindrome(strr)<<endl;
+
+
+    
+    
+// }
+
+
+
+// lettcode question :- valid palindrome
+
+bool IsAlphaNum(char ch)
+{
+    if ((ch >= '0' && ch <= '9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z'))
+    {
+        return true;
+    }
+    return false;
+}
+
+bool isPalindrome(string s)
+{
+    int st = 0, end = s.length() - 1;
+    while (st < end)
+    {
+        if (!IsAlphaNum(s[st]))
+        {
+            st++;
+            continue;
+        }
+        if (!IsAlphaNum(s[end]))
+        {
+            end--;
+            continue;
+        }
+        if (tolower(s[st]) != tolower(s[end]))
+        {
+            return false;
+        }
+        st++;
+        end--;
+    }
+    return true;
+}
+
+int main()
+{
+    string s;
+    cout << "Enter a string: ";
+    getline(cin, s);
+
+    if (isPalindrome(s))
+    {
+        cout << "Palindrome\n";
+    }
+    else
+    {
+        cout << "Not Palindrome\n";
+    }
+
+    return 0;
 }
