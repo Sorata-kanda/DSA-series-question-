@@ -119,54 +119,79 @@ using namespace std;
 
 // lettcode question :- valid palindrome
 
-bool IsAlphaNum(char ch)
-{
-    if ((ch >= '0' && ch <= '9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z'))
-    {
-        return true;
-    }
-    return false;
-}
+// bool IsAlphaNum(char ch)
+// {
+//     if ((ch >= '0' && ch <= '9') || (tolower(ch) >= 'a' && tolower(ch) <= 'z'))
+//     {
+//         return true;
+//     }
+//     return false;
+// }
 
-bool isPalindrome(string s)
+// bool isPalindrome(string s)
+// {
+//     int st = 0, end = s.length() - 1;
+//     while (st < end)
+//     {
+//         if (!IsAlphaNum(s[st]))
+//         {
+//             st++;
+//             continue;
+//         }
+//         if (!IsAlphaNum(s[end]))
+//         {
+//             end--;
+//             continue;
+//         }
+//         if (tolower(s[st]) != tolower(s[end]))
+//         {
+//             return false;
+//         }
+//         st++;
+//         end--;
+//     }
+//     return true;
+// }
+
+// int main()
+// {
+//     string s;
+//     cout << "Enter a string: ";
+//     getline(cin, s);
+
+//     if (isPalindrome(s))
+//     {
+//         cout << "Palindrome\n";
+//     }
+//     else
+//     {
+//         cout << "Not Palindrome\n";
+//     }
+
+//     return 0;
+// }
+
+
+//leetcode problem :- remove all occurances of substring
+string removeOccurrences(string s, string part)
 {
-    int st = 0, end = s.length() - 1;
-    while (st < end)
+    while (!s.empty() && s.find(part) < s.length())
     {
-        if (!IsAlphaNum(s[st]))
-        {
-            st++;
-            continue;
-        }
-        if (!IsAlphaNum(s[end]))
-        {
-            end--;
-            continue;
-        }
-        if (tolower(s[st]) != tolower(s[end]))
-        {
-            return false;
-        }
-        st++;
-        end--;
+        s.erase(s.find(part), part.length());
     }
-    return true;
+    return s;
 }
 
 int main()
 {
-    string s;
-    cout << "Enter a string: ";
+    string s, part;
+    cout << "Enter the main string: ";
     getline(cin, s);
+    cout << "Enter the substring to remove: ";
+    getline(cin, part);
 
-    if (isPalindrome(s))
-    {
-        cout << "Palindrome\n";
-    }
-    else
-    {
-        cout << "Not Palindrome\n";
-    }
+    string result = removeOccurrences(s, part);
+    cout << "Result: " << result << endl;
 
     return 0;
 }
