@@ -173,25 +173,90 @@ using namespace std;
 
 
 //leetcode problem :- remove all occurances of substring
-string removeOccurrences(string s, string part)
+// string removeOccurrences(string s, string part)
+// {
+//     while (!s.empty() && s.find(part) < s.length())
+//     {
+//         s.erase(s.find(part), part.length());
+//     }
+//     return s;
+// }
+
+// int main()
+// {
+//     string s, part;
+//     cout << "Enter the main string: ";
+//     getline(cin, s);
+//     cout << "Enter the substring to remove: ";
+//     getline(cin, part);
+
+//     string result = removeOccurrences(s, part);
+//     cout << "Result: " << result << endl;
+
+//     return 0;
+// }
+
+
+
+//String permutation (hard to understand)
+
+bool isfreqsame(int freq1[], int freq2[])
 {
-    while (!s.empty() && s.find(part) < s.length())
+    for (int i = 0; i < 26; i++)
     {
-        s.erase(s.find(part), part.length());
+        if (freq1[i] != freq2[i])
+        {
+            return false;
+        }
     }
-    return s;
+    return true;
+}
+
+bool checkInclusion(string s1, string s2)
+{
+    int freq[26] = {0};
+    for (int i = 0; i < s1.length(); i++)
+    {
+        freq[s1[i] - 'a']++;
+    }
+
+    int windsize = s1.length();
+
+    for (int i = 0; i < s2.length(); i++)
+    {
+        int windidx = 0, idx = i;
+        int windfreq[26] = {0};
+
+        while (windidx < windsize && idx < s2.length())
+        {
+            windfreq[s2[idx] - 'a']++; // ✅ fixed here
+            windidx++;
+            idx++;
+        }
+        if (isfreqsame(freq, windfreq))
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 int main()
 {
-    string s, part;
-    cout << "Enter the main string: ";
-    getline(cin, s);
-    cout << "Enter the substring to remove: ";
-    getline(cin, part);
+    string s1, s2;
+    cout << "Enter first string (pattern): ";
+    cin >> s1;
+    cout << "Enter second string (text): ";
+    cin >> s2;
 
-    string result = removeOccurrences(s, part);
-    cout << "Result: " << result << endl;
+    if (checkInclusion(s1, s2))
+    {
+        cout << "True (Permutation of s1 is in s2)" << endl;
+    }
+    else
+    {
+        cout << "False (No permutation of s1 found in s2)" << endl;
+    }
 
     return 0;
 }
