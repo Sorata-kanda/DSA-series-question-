@@ -357,6 +357,11 @@ using namespace std;
     // }
 
 
+
+
+
+
+
 // custom functor
 bool comparator( pair<int, int> p1,  pair<int, int> p2){
     if (p1.second < p2.second)
@@ -371,7 +376,18 @@ bool comparator( pair<int, int> p1,  pair<int, int> p2){
         return false;
 }
 
-int main(){
+
+
+
+
+
+
+
+
+
+
+
+// int main(){
     // vector<pair<int, int>> vec = {{1, 2}, {3, 2}, {5, 6}, {7, 8}, {9, 0}};
     // sort(vec.begin(), vec.end(), comparator);
     // for (auto p : vec)
@@ -412,10 +428,10 @@ int main(){
 
 
     //builtin comparitor
-    int n=15;
-    long int n2= 15;
-    long long int n3= 15;
-    cout<< __builtin_popcount(n)<<endl;
-    cout<< __builtin_popcountl(n2)<<endl;
-    cout << __builtin_popcountll(n3) << endl;
-}
+    // int n=15;
+    // long int n2= 15;
+    // long long int n3= 15;
+    // cout<< __builtin_popcount(n)<<endl;
+    // cout<< __builtin_popcountl(n2)<<endl;
+    // cout << __builtin_popcountll(n3) << endl;
+// }
