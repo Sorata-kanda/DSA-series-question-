@@ -2,6 +2,7 @@
 #include <string.h>
 #include<string>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
 // bool ispallindrome(string str){
@@ -265,38 +266,75 @@ using namespace std;
 
 //Reverse words in string
 
-string reverseWords(string s)
-{
-    int n = s.length();
-    string ans = "";
-    reverse(s.begin(), s.end()); // reverse whole string first
+// string reverseWords(string s)
+// {
+//     int n = s.length();
+//     string ans = "";
+//     reverse(s.begin(), s.end()); // reverse whole string first
 
-    for (int i = 0; i < n; i++)
-    {
-        string word = "";
-        while (i < n && s[i] != ' ')
-        {
-            word += s[i];
+//     for (int i = 0; i < n; i++)
+//     {
+//         string word = "";
+//         while (i < n && s[i] != ' ')
+//         {
+//             word += s[i];
+//             i++;
+//         }
+
+//         reverse(word.begin(), word.end()); // reverse each word
+//         if (word.length() > 0)
+//         {
+//             ans += " " + word;
+//         }
+//     }
+//     return ans.substr(1); // remove leading space
+// }
+
+// int main()
+// {
+//     string input;
+//     cout << "Enter a sentence: ";
+//     getline(cin, input);
+
+//     string result = reverseWords(input);
+//     cout << "Reversed words: " << result << endl;
+
+//     return 0;
+// }
+
+
+
+
+//String compression :-
+
+int main(){
+    vector<char> vec = {'a','a','b','b','c','c','c'};
+    int n = vec.size();
+    int idx = 0;
+    for(int i=0; i<n ; i++){
+        char ch = vec[i];
+        int count = 0;
+        while(i<n && vec[i] == ch){
+            count++;
             i++;
         }
-
-        reverse(word.begin(), word.end()); // reverse each word
-        if (word.length() > 0)
+        if (count == 1)
         {
-            ans += " " + word;
+            vec[idx++] = ch;
+        }else{
+            vec[idx++] = ch;
+            string str = to_string(count);
+            for(char dig: str){
+                vec[idx++] = dig;
+            }
         }
+        i--;
     }
-    return ans.substr(1); // remove leading space
+    vec.resize(idx);
+
+    for (int i = 0; i < idx; i++)
+    {
+        cout<<vec[i]<<"";
+    }
 }
 
-int main()
-{
-    string input;
-    cout << "Enter a sentence: ";
-    getline(cin, input);
-
-    string result = reverseWords(input);
-    cout << "Reversed words: " << result << endl;
-
-    return 0;
-}
