@@ -17,14 +17,42 @@ string IsPrime(int n){
 
 
 //seive of Eratosthenes    //optimised approch to find prime number of a range
-vector<int> isPrime(int n, bool F){
 
+// digits of a number
+void digitTaker(int n2){
+    cout<<"digits: ";
+    while(n2>0){
+        int div = n2%10;
+        cout<<div<<" ";
+        n2 /=10;
+    }
+    cout<<endl;
 }
 
+
+
+//Armstrong number
+bool isArmstrong(int n3){
+    int summ=0;
+    int temp = n3;
+    while(n3>0){
+        int div = n3%10;
+        div = div*div*div;
+        summ += div;
+        n3/=10; 
+    }
+    if(summ == temp){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 int main(){
     int n = 2;
     cout<<IsPrime(n);
+
 
     // seive of Eratosthenes
     int n1 = 50;
@@ -41,6 +69,21 @@ int main(){
         }
     }
 
-    cout<< "count: "<<count;
+    cout<< "count: "<<count<<endl;
 
+
+
+    //digits of a number
+    int n2 = 3568;
+    digitTaker(n2);
+
+    //armstrong number
+    int n3 = 153;
+    if(isArmstrong(n3)){
+        cout<<n3<<" is a Armstrong Number"<<endl;
+    }
+    else{
+        cout<< n3<<" is Not a Armstrong Number"<<endl;
+    }
+    
 }
