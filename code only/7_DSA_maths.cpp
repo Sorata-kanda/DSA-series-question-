@@ -49,6 +49,28 @@ bool isArmstrong(int n3){
     }
 }
 
+
+//Euclids algorithm to fund gcd
+int gcd(int a, int b){
+    while(a!=0 && b != 0){
+        if(a>b){
+            a = a%b;
+        }else{
+            b = b%a;
+        }
+    }
+    if(a==0){
+        return b;
+    }
+    else{
+        return a;
+    }
+    cout<<endl;
+}
+
+
+
+
 int main(){
     int n = 2;
     cout<<IsPrime(n);
@@ -85,5 +107,10 @@ int main(){
     else{
         cout<< n3<<" is Not a Armstrong Number"<<endl;
     }
+
+
+    //Euclid's algorithm ro ginf gcd
     
+    int a =6, b =10;
+    cout<<"GCD: "<<gcd(a,b);
 }
