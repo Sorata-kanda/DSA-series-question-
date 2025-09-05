@@ -61,15 +61,35 @@ int gcd(int a, int b){
     }
     if(a==0){
         return b;
+        cout << endl;
     }
     else{
         return a;
+        cout << endl;
     }
-    cout<<endl;
 }
 
 
 
+//int LCM
+int lcm(int a , int b){
+    int gcdd = gcd(a,b);
+    return (a*b)/gcdd;
+}
+
+
+//reverse a number
+
+int reverser(int n4){
+    int rev = 0;
+
+    while(n4!=0){
+        int digit = n4 %10;
+        rev = (rev*10) + digit;
+        n4 /=10;
+    }
+    return rev;
+}
 
 int main(){
     int n = 2;
@@ -112,5 +132,23 @@ int main(){
     //Euclid's algorithm ro ginf gcd
     
     int a =6, b =10;
-    cout<<"GCD: "<<gcd(a,b);
+    cout<<"GCD: "<<gcd(a,b)<<endl;
+
+    //LCM
+    cout<<"LCM: "<<lcm(a,b)<<endl;
+
+    //Reverse a number
+    int n4 = 456;
+    cout<<"reversed string: "<<reverser(n4)<<endl;
+
+    //Palindrome number
+    int n5 = 346;
+    if(n5 == reverser(n5)){
+        cout<<n5<<" The number is plaindrome number"<<endl;
+    }else{
+        cout<<n5<<" The number is not a plaindrome  number"<<endl;
+    }
+
+
+    //Learn some basic modulo properties
 }
