@@ -139,3 +139,7 @@ int main(){
     }
     return 0;
 }
+
+// Note :- Cause of heavy sickness and dizzyness we can't solve a problem today, 
+// i am sor sorry to myself but i am getting dizzy even by sitting on chair
+// Today - 12/9/2025 , day - friday , tommorow i will do some web development
