@@ -87,35 +87,76 @@ using namespace std;
 
 // 2. right approch for : Two Sum
 
+// int main(){
+//     vector<int> nums = { 2, 7, 11, 15 };
+//     int target = 9;
+
+//     vector<pair<int, int>> arr;
+//     int n = nums.size() - 1;
+//     int left = 0, right = n;
+//     for (int i = 0; i < nums.size(); i++)
+//     {
+//         arr.push_back({nums[i], i});
+//     }
+//     sort(arr.begin(), arr.end());
+
+//     while (left < right)
+//     {
+//         int sum = arr[left].first + arr[right].first;
+
+//         if (sum == target)
+//         {
+//             cout << "(" << arr[left].second << ", " << arr[right].second << ")" << endl;
+//             break;
+//         }
+//         else if (sum < target)
+//         {
+//             left++;
+//         }
+//         else
+//         {
+//             right--;
+//         }
+//     }
+// }
+
+
+// int main(){
+//     vector<string> str = {"flower", "flow", "flight"};
+//     char comparitor = str[0][0];
+//     for(int i=0; i<str.size();i++){
+//         for(int j=0; j<str[i].size();j++){
+//             // cout << str[i][j] << " ";
+//             if(str[i][j] == str[i+1][j]){
+//                 comparitor = str[i][j];
+//             }
+//         }
+//         cout << comparitor << endl;
+//     }
+// }
+
+
+
+//brute force approch for (14. Longest common prefix) [used chat gpt]
+string adder (const vector<string> strs){
+    if (strs.empty())
+        return "";
+
+    string prefix = "";
+    
+    for(int i=0;i<strs[0].size(); i++){
+        char ch = strs[0][i];
+        for(int j=1; j<strs.size();j++){
+            if(strs[j][i] !=ch || i>=strs[j].size()){
+                return prefix;
+            }
+        }
+        
+        prefix += ch;
+    }
+}
+
 int main(){
-    vector<int> nums = { 2, 7, 11, 15 };
-    int target = 9;
-
-    vector<pair<int, int>> arr;
-    int n = nums.size() - 1;
-    int left = 0, right = n;
-    for (int i = 0; i < nums.size(); i++)
-    {
-        arr.push_back({nums[i], i});
-    }
-    sort(arr.begin(), arr.end());
-
-    while (left < right)
-    {
-        int sum = arr[left].first + arr[right].first;
-
-        if (sum == target)
-        {
-            cout << "(" << arr[left].second << ", " << arr[right].second << ")" << endl;
-            break;
-        }
-        else if (sum < target)
-        {
-            left++;
-        }
-        else
-        {
-            right--;
-        }
-    }
+    vector<string> strs = {""};
+    cout<<adder(strs); 
 }
