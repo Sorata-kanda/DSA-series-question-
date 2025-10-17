@@ -138,25 +138,76 @@ using namespace std;
 
 
 //brute force approch for (14. Longest common prefix) [used chat gpt]
-string adder (const vector<string> strs){
-    if (strs.empty())
-        return "";
+// string adder (const vector<string> strs){
+//     if (strs.empty())
+//         return "";
 
-    string prefix = "";
+//     string prefix = "";
     
-    for(int i=0;i<strs[0].size(); i++){
-        char ch = strs[0][i];
-        for(int j=1; j<strs.size();j++){
-            if(strs[j][i] !=ch || i>=strs[j].size()){
-                return prefix;
-            }
-        }
+//     for(int i=0;i<strs[0].size(); i++){
+//         char ch = strs[0][i];
+//         for(int j=1; j<strs.size();j++){
+//             if(strs[j][i] !=ch || i>=strs[j].size()){
+//                 return prefix;
+//             }
+//         }
         
-        prefix += ch;
+//         prefix += ch;
+//     }
+// }
+
+// int main(){
+//     vector<string> strs = {""};
+//     cout<<adder(strs); 
+// }
+
+
+
+
+// Brute force (26. Remove Duplicates from Sorted Array)
+// int main(){
+//     vector<int> arr = {0, 0, 1, 1};
+//     int j = 1;
+   
+//     for(int i=1; i<arr.size(); i++){
+//         if(arr[i]!=arr[i-1]){
+//             arr[j] = arr[i];
+//             j++;
+//         }
+//     }
+        
+//     cout<<j;
+// }
+
+
+//Brute force (35. insert search position)
+
+int binary( vector<int> nums, int target){
+    int left = 0;
+    int right = nums.size() - 1;
+    while (left <= right)
+    {
+        int mid = left + (right - left) / 2;
+        if (nums[mid] == target)
+        {
+            return mid;
+        }
+        else if (nums[mid] < target)
+        {
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1;
+        }
     }
+    return left;
 }
 
 int main(){
-    vector<string> strs = {""};
-    cout<<adder(strs); 
+    vector<int> nums = {1,3,5,6};
+    int target = 5;
+    cout<<binary(nums, target);
+    
 }
+
