@@ -182,32 +182,55 @@ using namespace std;
 
 //Brute force (35. insert search position)
 
-int binary( vector<int> nums, int target){
-    int left = 0;
-    int right = nums.size() - 1;
-    while (left <= right)
-    {
-        int mid = left + (right - left) / 2;
-        if (nums[mid] == target)
-        {
-            return mid;
-        }
-        else if (nums[mid] < target)
-        {
-            left = mid + 1;
-        }
-        else
-        {
-            right = mid - 1;
-        }
-    }
-    return left;
-}
+// int binary( vector<int> nums, int target){
+//     int left = 0;
+//     int right = nums.size() - 1;
+//     while (left <= right)
+//     {
+//         int mid = left + (right - left) / 2;
+//         if (nums[mid] == target)
+//         {
+//             return mid;
+//         }
+//         else if (nums[mid] < target)
+//         {
+//             left = mid + 1;
+//         }
+//         else
+//         {
+//             right = mid - 1;
+//         }
+//     }
+//     return left;
+// }
 
-int main(){
-    vector<int> nums = {1,3,5,6};
-    int target = 5;
-    cout<<binary(nums, target);
+// int main(){
+//     vector<int> nums = {1,3,5,6};
+//     int target = 5;
+//     cout<<binary(nums, target);
     
-}
+// }
 
+
+
+
+// 6. Plus One[GPT SOLVED]
+int main()
+{
+    vector<int> digits = {1,2,3,4,5};
+    int carry = 1;
+    for (int i = digits.size() - 1; i >= 0; i--)
+    {
+        int sum = digits[i] + carry;
+        digits[i] = sum % 10;
+        carry = sum / 10;
+    }
+
+    if (carry)
+    {
+        digits.insert(digits.begin(), carry);
+    }
+    for(int i=0; i<digits.size(); i++){
+        cout<<digits[i]<<" ";
+    }
+}
