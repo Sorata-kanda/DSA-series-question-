@@ -299,6 +299,7 @@ using namespace std;
 
 
 //----------------From start once again-------------------------------------
+//Apna college teacher:-
 
 
 
@@ -306,99 +307,267 @@ using namespace std;
 
 
 
+// class Node{
+// public:
+//     int data;
+//     Node* next;
 
-class Node{
-public:
+//     Node(int val){
+//         data = val;
+//         next = NULL;
+//     }
+
+// };
+
+
+// class List{
+//     Node* head;
+//     Node* tail;
+
+// public:
+//     List(){
+//         head = tail = NULL;
+//     }
+
+
+//     void push_front(int val){
+//         Node* newNode = new Node(val);
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }else{
+//             newNode->next = head;
+//             head = newNode;
+//         }
+//     }
+
+//     void push_back(int val){
+//         Node* newNode = new Node(val);
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }else{
+//             tail->next = newNode;
+//             tail = newNode;
+//         }
+
+//     }
+
+//     void display(){
+//         Node* temp = head;
+//         while(temp != NULL){
+//             cout<<temp->data<<"->";
+//             temp = temp->next;
+//         }
+//         cout<<"NULL"<<endl;
+//     }
+
+//     void pop_front(){
+//         if(head == NULL){
+//             cout<<"Linked List is empty";
+//             return;
+//         }
+//         Node* temp = head;
+//         head = head->next;
+//         temp->next = NULL;
+//         delete temp;
+//     }
+
+//     void pop_back(){
+//         if(head == NULL){
+//             cout<<"Linked List is empty";
+//             return;
+//         }
+//         Node* temp = head;
+//         while(temp->next != tail){
+//             temp = temp->next;
+//         }
+//         temp->next = NULL;
+//         delete tail;
+//         tail = temp;
+//     }
+// };
+
+
+
+
+// int main(){
+//     List ll;
+//     ll.push_front(1);
+//     ll.push_front(2);
+//     ll.push_front(3);
+//     ll.push_back(4);
+//     ll.pop_back();
+//     ll.display();
+//     return 0;
+// }
+
+
+
+//--------------------------Basic learning of syntax--------------
+//By CHatGpt:-
+
+/*
+Q1: Create a singly linked list by inserting elements at the end and print the linked list.
+
+Goals of this question:
+
+Understand what a Node is.
+
+Understand how to link nodes.
+
+Understand head pointer logic.
+
+Learn to traverse and print.
+*/
+
+
+// ==========================OOPS APPROCH
+// class Node{
+// public:
+//     int data;
+//     Node* next;
+
+//     Node(int val){
+//         data = val;
+//         next = NULL;
+//     }
+// };
+
+
+// class list{
+//     Node* head;
+//     Node* tail;
+// public:
+
+//     list(){
+//         head = tail = NULL;
+//     }
+
+//     void insertAtEnd(int val){
+//         Node* newNode = new Node(val);
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }else{
+//             tail->next = newNode;
+//             tail = newNode;
+//         }
+//     }
+
+//     void insertAtBeg(int val){
+//         Node* newNode = new Node(val);
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }else{
+//             newNode->next = head;
+//             head = newNode;
+//         }
+
+
+//     }
+
+//     void deleteAtBeg(){
+//         if(head == NULL){
+//             cout<<"List is empty."<<endl;
+//         }else{
+//             Node* temp = head;
+//             head = head->next;
+//             delete temp;
+//         }
+//     }
+
+//     void display(){
+//         Node* temp = head;
+//         while(temp != NULL){
+//             cout<<temp->data<<"->";
+//             temp = temp->next;
+//         }
+//         cout<<"NULL"<<endl;
+//     }
+// };
+
+
+
+// int main(){
+//     list l;
+//     l.insertAtEnd(1);
+//     l.insertAtEnd(2);
+//     l.insertAtEnd(3);
+//     l.insertAtBeg(100);
+//     l.deleteAtBeg();
+//     l.display();
+// }
+
+//=============================Procedural Approch
+
+struct Node{
     int data;
     Node* next;
 
     Node(int val){
         data = val;
-        next = NULL;
+        next = nullptr;
     }
 
 };
 
 
-class List{
-    Node* head;
-    Node* tail;
-
-public:
-    List(){
-        head = tail = NULL;
+void insertAtEnd(Node* &head, int val){
+    Node* newNode = new Node(val);
+    if(head == nullptr){
+        head = newNode;
+        return;
     }
 
-
-    void push_front(int val){
-        Node* newNode = new Node(val);
-        if(head == NULL){
-            head = tail = newNode;
-            return;
-        }else{
-            newNode->next = head;
-            head = newNode;
-        }
+    Node* temp = head;
+    while(temp->next != nullptr){
+        temp = temp->next;
     }
+    temp->next = newNode;
+}
 
-    void push_back(int val){
-        Node* newNode = new Node(val);
-        if(head == NULL){
-            head = tail = newNode;
-            return;
-        }else{
-            tail->next = newNode;
-            tail = newNode;
-        }
-
+void insertAtBeg(Node* &head, int val){
+    Node* newNode = new Node(val);
+    if(head == nullptr){
+        head = newNode;
+        return;
+    }else{
+        newNode->next  = head;
+        head = newNode;
     }
+}
 
-    void display(){
-        Node* temp = head;
-        while(temp != NULL){
-            cout<<temp->data<<"->";
-            temp = temp->next;
-        }
-        cout<<"NULL"<<endl;
-    }
-
-    void pop_front(){
-        if(head == NULL){
-            cout<<"Linked List is empty";
-            return;
-        }
+void deleteAtBeg(Node* &head){
+    if(head == nullptr){
+        return;
+    }else{
         Node* temp = head;
         head = head->next;
-        temp->next = NULL;
         delete temp;
     }
+}
 
-    void pop_back(){
-        if(head == NULL){
-            cout<<"Linked List is empty";
-            return;
-        }
-        Node* temp = head;
-        while(temp->next != tail){
-            temp = temp->next;
-        }
-        temp->next = NULL;
-        delete tail;
-        tail = temp;
+void printer(Node* &head){
+    Node* temp = head;
+
+    while(temp != nullptr){
+        cout<<temp->data<<"->";
+        temp = temp->next;
     }
-};
-
-
-
+    cout<<"NULL";
+}
 
 int main(){
-    List ll;
-    ll.push_front(1);
-    ll.push_front(2);
-    ll.push_front(3);
-    ll.push_back(4);
-    ll.pop_back();
-    ll.display();
-    return 0;
+    Node* head = nullptr;
+
+    insertAtEnd(head,5);
+    insertAtEnd(head,10);
+    insertAtEnd(head,15);
+    insertAtEnd(head,20);
+    insertAtBeg(head,100);
+    deleteAtBeg(head);
+    printer(head);
 }
 
