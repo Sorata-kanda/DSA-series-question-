@@ -478,6 +478,27 @@ Learn to traverse and print.
 //         }
 //     }
 
+//     void deleteAtEnd(){
+//         if(head == NULL){
+//             cout<<"List is empty."<<endl;
+//             return;
+//         }
+//         if(head == tail){
+//             delete head;
+//             head == tail == NULL;
+//             return;
+//         }else{
+//             Node* temp = head;
+//             while(temp->next!=tail){
+//                 temp = temp->next;
+//             }
+//             Node* notNeeded = tail;
+//             tail = temp;
+//             tail->next = NULL;
+//             delete notNeeded;
+//         }
+//     }
+
 //     void display(){
 //         Node* temp = head;
 //         while(temp != NULL){
@@ -497,6 +518,7 @@ Learn to traverse and print.
 //     l.insertAtEnd(3);
 //     l.insertAtBeg(100);
 //     l.deleteAtBeg();
+//     l.deleteAtEnd();
 //     l.display();
 // }
 
@@ -549,6 +571,21 @@ void deleteAtBeg(Node* &head){
     }
 }
 
+void deleteAtEnd(Node* &head){
+    if(head == nullptr){
+        cout<<"List is empty."<<endl;
+        return;
+    }else{
+        Node* temp = head;
+        while(temp->next->next!=nullptr){
+            temp = temp->next;
+        }
+        Node* last = temp->next;
+        temp->next = nullptr;
+        delete last;
+    }
+}
+
 void printer(Node* &head){
     Node* temp = head;
 
@@ -568,6 +605,7 @@ int main(){
     insertAtEnd(head,20);
     insertAtBeg(head,100);
     deleteAtBeg(head);
+    deleteAtEnd(head);
     printer(head);
 }
 
