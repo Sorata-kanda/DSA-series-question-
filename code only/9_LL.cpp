@@ -484,8 +484,8 @@ Learn to traverse and print.
 //             return;
 //         }
 //         if(head == tail){
+//             head = tail = NULL;
 //             delete head;
-//             head == tail == NULL;
 //             return;
 //         }else{
 //             Node* temp = head;
@@ -497,6 +497,112 @@ Learn to traverse and print.
 //             tail->next = NULL;
 //             delete notNeeded;
 //         }
+//     }
+
+//     void DelAtPos(int pos){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }
+//         if(pos == 1){
+//             Node* temp = head;
+//             head = head->next;
+//             delete temp;
+//         }
+//         Node* temp = head;
+//         for(int i=1; i<pos-1 && temp!=NULL; i++){
+//             temp = temp->next;
+//         }
+
+//         if(temp->next == NULL){
+//             cout<<"Invalid position"<<endl;
+//             return;
+//         }
+
+//         Node* ToDel = temp->next;
+//         temp->next = ToDel->next;
+//         delete ToDel;
+//         return;
+//     }
+//     void DelAtVal(int val){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }
+//         if(head->data == val){
+//             Node* temp = head;
+//             head = head->next;
+//             if(head == NULL) tail = NULL; 
+//             delete temp;
+//             return;
+//         }
+//         Node* temp = head;
+//         while(temp->next != NULL && temp->next->data != val){
+//             temp = temp->next;
+//         }
+
+//         if(temp->next == NULL){
+//             cout<<"Val not found";
+//             return;
+//         }
+
+//         Node* ToDel = temp->next;
+//         if(ToDel ==  tail){
+//             tail = temp;
+//         }
+//         temp->next = ToDel->next;
+//         delete ToDel;
+//     }
+
+//     void reverse(){
+//         Node* prev = NULL;
+//         Node* curr = head;
+//         Node* next = NULL;
+
+//         tail = head;
+//         while(curr!=NULL){
+//             next = curr->next;
+//             curr->next = prev;
+//             prev = curr;
+//             curr = next;
+//         }
+//         head = prev;
+//     }
+
+//     void middle(){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }
+//         Node* slow = head;
+//         Node* fast = head;
+
+//         while(fast != NULL && fast->next != NULL){
+//             slow = slow->next;
+//             fast = fast->next->next;
+//         }
+//         cout<<"Middle element: "<< slow->data<<endl;
+//     }
+
+//     bool detector(){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return false;
+//         }
+//         Node* slow = head;
+//         Node* fast = head;
+
+//         while(fast!=NULL && fast->next != NULL){
+//             slow = slow->next;
+//             fast = fast->next->next;
+
+//             if(slow == fast){
+//                 cout<<"Loop detected";
+//                 return true;
+//             }
+//         }
+//         cout<<"No Loop detected"<<endl;
+//         return false;
 //     }
 
 //     void display(){
@@ -517,95 +623,284 @@ Learn to traverse and print.
 //     l.insertAtEnd(2);
 //     l.insertAtEnd(3);
 //     l.insertAtBeg(100);
-//     l.deleteAtBeg();
-//     l.deleteAtEnd();
+//     // l.deleteAtBeg();
+//     // l.deleteAtEnd();
+//     // l.DelAtPos(3);
+//     // l.DelAtVal(100);
+//     // l.reverse();
+//     // l.middle();
+//     l.detector();
 //     l.display();
 // }
 
 //=============================Procedural Approch
 
-struct Node{
-    int data;
-    Node* next;
+// struct Node{
+//     int data;
+//     Node* next;
 
-    Node(int val){
-        data = val;
-        next = nullptr;
-    }
+//     Node(int val){
+//         data = val;
+//         next = nullptr;
+//     }
 
-};
+// };
 
 
-void insertAtEnd(Node* &head, int val){
-    Node* newNode = new Node(val);
-    if(head == nullptr){
-        head = newNode;
-        return;
-    }
+// void insertAtEnd(Node* &head, int val){
+//     Node* newNode = new Node(val);
+//     if(head == nullptr){
+//         head = newNode;
+//         return;
+//     }
 
-    Node* temp = head;
-    while(temp->next != nullptr){
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
+//     Node* temp = head;
+//     while(temp->next != nullptr){
+//         temp = temp->next;
+//     }
+//     temp->next = newNode;
+// }
 
-void insertAtBeg(Node* &head, int val){
-    Node* newNode = new Node(val);
-    if(head == nullptr){
-        head = newNode;
-        return;
-    }else{
-        newNode->next  = head;
-        head = newNode;
-    }
-}
+// void insertAtBeg(Node* &head, int val){
+//     Node* newNode = new Node(val);
+//     if(head == nullptr){
+//         head = newNode;
+//         return;
+//     }else{
+//         newNode->next  = head;
+//         head = newNode;
+//     }
+// }
 
-void deleteAtBeg(Node* &head){
-    if(head == nullptr){
-        return;
-    }else{
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-    }
-}
+// void deleteAtBeg(Node* &head){
+//     if(head == nullptr){
+//         return;
+//     }else{
+//         Node* temp = head;
+//         head = head->next;
+//         delete temp;
+//     }
+// }
 
-void deleteAtEnd(Node* &head){
-    if(head == nullptr){
-        cout<<"List is empty."<<endl;
-        return;
-    }else{
-        Node* temp = head;
-        while(temp->next->next!=nullptr){
-            temp = temp->next;
-        }
-        Node* last = temp->next;
-        temp->next = nullptr;
-        delete last;
-    }
-}
+// void deleteAtEnd(Node* &head){
+//     if(head == nullptr){
+//         cout<<"List is empty."<<endl;
+//         return;
+//     }else{
+//         Node* temp = head;
+//         while(temp->next->next!=nullptr){
+//             temp = temp->next;
+//         }
+//         Node* last = temp->next;
+//         temp->next = nullptr;
+//         delete last;
+//     }
+// }
+// void deleteAtPos(Node* &head, int pos){
+//     if(head == nullptr){
+//         cout<<"list is empty"<<endl;
+//         return;
+//     }
+//     if(pos == 1){
+//         Node* t1 = head;
+//         head = nullptr;
+//         delete t1;
+//         return;
+//     }
 
-void printer(Node* &head){
-    Node* temp = head;
+//     Node* curr = head;
+//     for(int i=1; i<pos - 1 && curr->next !=nullptr; i++){
+//         curr = curr->next;
+//     }
+//     if(curr->next = nullptr){
+//         cout<<"Invalid position"<<endl;
+//         return;
+//     }
 
-    while(temp != nullptr){
-        cout<<temp->data<<"->";
-        temp = temp->next;
-    }
-    cout<<"NULL";
-}
+//     Node* ToDel = curr->next;
+//     curr->next = ToDel->next;
+//     delete ToDel;
 
-int main(){
-    Node* head = nullptr;
+// }
 
-    insertAtEnd(head,5);
-    insertAtEnd(head,10);
-    insertAtEnd(head,15);
-    insertAtEnd(head,20);
-    insertAtBeg(head,100);
-    deleteAtBeg(head);
-    deleteAtEnd(head);
-    printer(head);
-}
+// void Del(Node* &head, int pos){
+//     if(head == nullptr){
+//         cout << "List is empty" << endl;
+//         return;
+//     }
+
+//     if(pos == 1){
+//         Node* temp = head;
+//         head = head->next;
+//         delete temp;
+//         return;
+//     }
+
+//     int count = 1;
+//     Node* temp = head;
+
+//     while(count < pos-1 && temp->next != nullptr){
+//         temp = temp->next;
+//         count++;
+//     }
+
+//     if(temp->next == nullptr){
+//         cout << "Invalid position" << endl;
+//         return;
+//     }
+
+//     Node* ToDel = temp->next;
+//     temp->next = ToDel->next;
+//     delete ToDel;
+// }
+
+// void DelByVal(Node* &head, int val){
+//     if(head == nullptr){
+//         cout<<"List is empty"<<endl;
+//         return;
+//     }
+//     if(head->data == val){
+//         Node* deleter = head;
+//         head = head->next;
+//         delete deleter;
+//         return;
+//     }
+    
+//     Node* temp = head;
+//     while(temp->next != nullptr && temp->next->data != val){
+//         temp = temp->next;
+//     }
+    
+//     if(temp->next == nullptr){
+//         cout<<"value not found"<<endl;
+//         return;
+//     }
+
+//     Node* Del = temp->next;
+//     temp->next = Del->next;
+//     delete Del;
+// }
+// void reverse(Node* &head){
+//     Node* curr = head;
+//     Node* prev = nullptr;
+//     Node* next = NULL;
+//     while(curr != nullptr){
+//         next = curr->next;
+//         curr->next = prev;
+//         prev = curr;
+//         curr = next;
+//     }
+//     head = prev;
+// }
+
+// void middle(Node* &head){
+//     if(head == nullptr){
+//         cout<<"List is empty"<<endl;
+//         return;
+//     }
+
+//     Node* slow = head;
+//     Node* fast = head;
+
+//     while(fast != nullptr && fast->next !=nullptr){
+//         slow = slow->next;
+//         fast = fast->next->next;
+//     }
+//     cout<<"Middle element:"<<slow->data<<endl;
+// }
+
+// bool detectLoop(Node* head){
+//     if(head == nullptr){
+//         return false;
+//     }
+
+//     Node* slow = head;
+//     Node* fast = head;
+
+//     while(fast != nullptr && fast->next != nullptr){
+//         slow = slow->next;
+//         fast = fast->next->next;
+
+//         if(slow == fast){
+//             cout<<"Loop exists"<<endl;
+//             return true;
+//         }
+
+//     }
+//     cout<<"No Loop detected"<<endl;
+//     return false;
+// }
+
+// void printer(Node* &head){
+//     Node* temp = head;
+
+//     while(temp != nullptr){
+//         cout<<temp->data<<"->";
+//         temp = temp->next;
+//     }
+//     cout<<"NULL";
+// }
+
+// int main(){
+//     Node* head = nullptr;
+
+//     insertAtEnd(head,5);
+//     insertAtEnd(head,10);
+//     insertAtEnd(head,15);
+//     insertAtEnd(head,20);
+//     insertAtBeg(head,100);
+//     // deleteAtBeg(head);
+//     // deleteAtEnd(head);
+//     // Del(head,1);
+//     // DelByVal(head,15);
+//     // reverse(head);
+//     // middle(head);
+//     detectLoop(head);
+//     printer(head);
+// }
+
+
+
+
+//=================== Grounded Header List (ends with null) ==================
+
+// struct Node {
+//     int data;
+//     Node* next;
+// };
+
+// Node* HeaderList(){
+//     Node* header = new Node;
+//     header->data = -1; //dun=mmy value
+//     header->next = NULL;
+//     return header;
+// }
+
+// void insert_End(Node* & head, int val){
+//     if(head==nullptr){
+//         head = new Node;
+//         head->data = val;
+//         head->next = NULL;
+//         return;
+//     }else{
+//         Node* temp = head;
+//     }
+// }
+
+// void(Node* header){
+//     Node* temp = header->next;
+//     while(temp != NULL){
+//         cout<<temp->data<<" -> ";
+//         temp = temp->next;
+//     }
+// }
+
+// int main(){
+//     Node* head = nullptr;
+
+// }
+
+
+
+
 
