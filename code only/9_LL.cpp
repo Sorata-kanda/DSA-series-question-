@@ -867,40 +867,127 @@ Learn to traverse and print.
 // struct Node {
 //     int data;
 //     Node* next;
+//     Node(int val = -1){
+//         data = val;
+//         next = nullptr;
+//     }
 // };
 
 // Node* HeaderList(){
-//     Node* header = new Node;
-//     header->data = -1; //dun=mmy value
-//     header->next = NULL;
-//     return header;
+//     Node* head = new Node();
+//     head->next = NULL;
+//     return head;
 // }
 
 // void insert_End(Node* & head, int val){
-//     if(head==nullptr){
-//         head = new Node;
-//         head->data = val;
-//         head->next = NULL;
-//         return;
-//     }else{
-//         Node* temp = head;
+//     Node* newNode = new Node(val);
+//     Node* temp = head;
+
+//     while(temp->next != nullptr){
+//         temp = temp->next;
 //     }
+//     temp->next = newNode;
 // }
 
-// void(Node* header){
+// void display(Node* header){
 //     Node* temp = header->next;
-//     while(temp != NULL){
+//     while(temp != nullptr){
 //         cout<<temp->data<<" -> ";
 //         temp = temp->next;
 //     }
+//     cout<<"NULL"<<endl;
 // }
 
 // int main(){
-//     Node* head = nullptr;
+//     Node* head = HeaderList();
 
+//     insert_End(head,5);
+//     display(head);
 // }
 
 
 
+//=================== Grounded Header List using classes (ends with null) ==================
 
 
+class Node{
+public:
+    Node* next;
+    int data;
+    Node(int val = -1){
+        data = val;
+        next = NULL;
+    }
+};
+
+class list{
+    Node* header;
+
+public:
+    list(){
+        header = new Node();
+        header->next = NULL;
+    }
+
+    void insert_End(int val){
+        Node* newNode = new Node(val);
+
+        Node* temp = header;
+        while(temp->next!= NULL){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+       
+    }
+
+    void insert_begining(int val){
+        Node* newNode = new Node(val);
+        newNode->next = header->next;
+        header->next = newNode;
+        
+    }
+
+    void deleteByVal(int val){
+        if(header == NULL){
+            cout<<"List is empty";
+            return;
+        }
+        else{
+            Node* temp = header->next;
+            while(temp->next != NULL && temp->next->data != val){
+                temp = temp->next;
+            }
+            if(temp == NULL){
+                cout<<"Not found in LL";
+                return;
+            }
+            Node* del = temp->next;
+            temp->next = del->next;
+            delete del;
+        }
+    }
+
+    void display(){
+        Node* temp = header->next;
+        while(temp != NULL){
+            cout<<temp->data<<" -> ";
+            temp = temp->next;
+        }
+        cout<<"NULL";
+    }
+
+};
+
+int main(){
+    list l;
+    l.insert_End(5);
+    l.insert_End(10);
+    l.insert_End(15);
+    l.insert_End(20);
+    l.insert_begining(-10);
+    l.insert_begining(-20);
+    l.insert_begining(-30);
+    l.insert_begining(-40);
+    l.deleteByVal(15);
+    l.display();
+}
