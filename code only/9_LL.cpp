@@ -910,10 +910,96 @@ Learn to traverse and print.
 //=================== Grounded Header List using classes (ends with null) ==================
 
 
+// class Node{
+// public:
+//     Node* next;
+//     int data;
+//     Node(int val = -1){
+//         data = val;
+//         next = NULL;
+//     }
+// };
+
+// class list{
+//     Node* header;
+
+// public:
+//     list(){
+//         header = new Node();
+//         header->next = NULL;
+//     }
+
+//     void insert_End(int val){
+//         Node* newNode = new Node(val);
+
+//         Node* temp = header;
+//         while(temp->next!= NULL){
+//             temp = temp->next;
+//         }
+//         temp->next = newNode;
+       
+//     }
+
+//     void insert_begining(int val){
+//         Node* newNode = new Node(val);
+//         newNode->next = header->next;
+//         header->next = newNode;
+        
+//     }
+
+//     void deleteByVal(int val){
+//         if(header == NULL){
+//             cout<<"List is empty";
+//             return;
+//         }
+//         else{
+//             Node* temp = header->next;
+//             while(temp->next != NULL && temp->next->data != val){
+//                 temp = temp->next;
+//             }
+//             if(temp == NULL){
+//                 cout<<"Not found in LL";
+//                 return;
+//             }
+//             Node* del = temp->next;
+//             temp->next = del->next;
+//             delete del;
+//         }
+//     }
+
+//     void display(){
+//         Node* temp = header->next;
+//         while(temp != NULL){
+//             cout<<temp->data<<" -> ";
+//             temp = temp->next;
+//         }
+//         cout<<"NULL";
+//     }
+
+// };
+
+// int main(){
+//     list l;
+//     l.insert_End(5);
+//     l.insert_End(10);
+//     l.insert_End(15);
+//     l.insert_End(20);
+//     l.insert_begining(-10);
+//     l.insert_begining(-20);
+//     l.insert_begining(-30);
+//     l.insert_begining(-40);
+//     l.deleteByVal(15);
+//     l.display();
+// }
+
+
+
+// =================== Circular Header List using classes (ends with Header) ==================
+
 class Node{
 public:
-    Node* next;
     int data;
+    Node* next;
     Node(int val = -1){
         data = val;
         next = NULL;
@@ -922,72 +1008,48 @@ public:
 
 class list{
     Node* header;
-
+    Node* tail;
 public:
     list(){
-        header = new Node();
-        header->next = NULL;
+        header = tail = new Node();
+        header->next = header;
     }
 
     void insert_End(int val){
         Node* newNode = new Node(val);
-
         Node* temp = header;
-        while(temp->next!= NULL){
+        while(temp->next!=header){
             temp = temp->next;
         }
         temp->next = newNode;
-       
-    }
+        newNode->next = header;
 
+    }
     void insert_begining(int val){
-        Node* newNode = new Node(val);
-        newNode->next = header->next;
-        header->next = newNode;
+            Node* newNode = new Node(val);
+            newNode->next = header->next;
+            header->next =newNode;
+        }
         
-    }
-
-    void deleteByVal(int val){
-        if(header == NULL){
-            cout<<"List is empty";
-            return;
-        }
-        else{
-            Node* temp = header->next;
-            while(temp->next != NULL && temp->next->data != val){
-                temp = temp->next;
-            }
-            if(temp == NULL){
-                cout<<"Not found in LL";
-                return;
-            }
-            Node* del = temp->next;
-            temp->next = del->next;
-            delete del;
-        }
-    }
 
     void display(){
         Node* temp = header->next;
-        while(temp != NULL){
+        while(temp != header){
             cout<<temp->data<<" -> ";
             temp = temp->next;
         }
-        cout<<"NULL";
+        cout<<"back_to_header";
     }
-
 };
 
 int main(){
     list l;
-    l.insert_End(5);
-    l.insert_End(10);
-    l.insert_End(15);
-    l.insert_End(20);
-    l.insert_begining(-10);
-    l.insert_begining(-20);
-    l.insert_begining(-30);
-    l.insert_begining(-40);
-    l.deleteByVal(15);
+    l.insert_begining(100);
+    l.insert_begining(200);
+    l.insert_begining(300);
+    l.insert_begining(400);
+    // l.insert_End(200);
+    // l.insert_End(300);
     l.display();
+
 }
