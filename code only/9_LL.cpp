@@ -996,60 +996,203 @@ Learn to traverse and print.
 
 // =================== Circular Header List using classes (ends with Header) ==================
 
+// class Node{
+// public:
+//     int data;
+//     Node* next;
+//     Node(int val = -1){
+//         data = val;
+//         next = NULL;
+//     }
+// };
+
+// class list{
+//     Node* header;
+//     Node* tail;
+// public:
+//     list(){
+//         header = tail = new Node();
+//         header->next = header;
+//     }
+
+//     void insert_End(int val){
+//         Node* newNode = new Node(val);
+//         Node* temp = header;
+//         while(temp->next!=header){
+//             temp = temp->next;
+//         }
+//         temp->next = newNode;
+//         newNode->next = header;
+
+//     }
+//     void insert_begining(int val){
+//             Node* newNode = new Node(val);
+//             newNode->next = header->next;
+//             header->next =newNode;
+//     }
+
+//     void DelAtVal(int val){
+        
+//         if(header->next == header){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }
+        
+//         if(header->next->data == val){
+//         Node* del = header->next;
+//         header->next = del->next;
+//         delete del;
+//         return;
+//         }
+//         else{
+//             Node* temp = header->next;
+//             while(temp != header && temp->next->data != val){
+//                 temp = temp->next;
+//             }
+//             Node* noNeed = temp->next;
+//             temp->next = noNeed->next;
+//             delete noNeed;
+
+//         }
+
+//     }
+
+//     // void DelAtVal(int val){  //This is by chat GPT
+
+//     //     if(header->next == header){
+//     //         cout << "List is empty" << endl;
+//     //         return;
+//     //     }
+
+//     //     // Case 1 — first data node matches
+//     //     if(header->next->data == val){
+//     //         Node* del = header->next;
+//     //         header->next = del->next;
+//     //         delete del;
+//     //         return;
+//     //     }
+
+//     //     // Case 2 — search the rest
+//     //     Node* temp = header->next;
+
+//     //     while(temp->next != header && temp->next->data != val){
+//     //         temp = temp->next;
+//     //     }
+
+//     //     // Value NOT found
+//     //     if(temp->next == header){
+//     //         cout << "Value not found" << endl;
+//     //         return;
+//     //     }
+
+//     //     // Delete node
+//     //     Node* del = temp->next;
+//     //     temp->next = del->next;
+//     //     delete del;
+//     // }
+        
+
+//     void display(){
+//         Node* temp = header->next;
+//         while(temp != header){
+//             cout<<temp->data<<" -> ";
+//             temp = temp->next;
+//         }
+//         cout<<"back_to_header";
+//     }
+// };
+
+// int main(){
+//     list l;
+//     l.insert_begining(100);
+//     l.insert_begining(200);
+//     l.insert_begining(300);
+//     l.insert_begining(400);
+//     l.DelAtVal(400);
+//     // l.insert_End(200);
+//     // l.insert_End(300);
+//     l.display();
+
+// }
+
+//============================ Doubly Linekd List ===========================================
+
 class Node{
 public:
     int data;
     Node* next;
-    Node(int val = -1){
+    Node* prev;
+
+    Node(int val){
         data = val;
         next = NULL;
+        prev = NULL;
     }
 };
 
 class list{
-    Node* header;
+    Node* head;
     Node* tail;
 public:
     list(){
-        header = tail = new Node();
-        header->next = header;
+        head = tail = NULL;
     }
 
     void insert_End(int val){
         Node* newNode = new Node(val);
-        Node* temp = header;
-        while(temp->next!=header){
-            temp = temp->next;
-        }
-        temp->next = newNode;
-        newNode->next = header;
-
-    }
-    void insert_begining(int val){
-            Node* newNode = new Node(val);
-            newNode->next = header->next;
-            header->next =newNode;
+        if(head == NULL){
+            head = tail = newNode;
+            return;
         }
         
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
 
-    void display(){
-        Node* temp = header->next;
-        while(temp != header){
-            cout<<temp->data<<" -> ";
+    }
+
+    void insert_beginning(int val){
+        Node* newNode = new Node(val);
+
+        if(head == NULL){
+            head = tail = newNode;
+            return;
+        }
+
+        newNode->next = head;
+        head->prev = newNode;
+        head = newNode;
+    }
+    void displayBack(){
+        Node* temp = tail;
+        cout<<" NULL <- ";
+        while(temp != NULL){
+            cout<<temp->data<<" <- ";
+            temp = temp -> prev;
+        }
+        cout<<"NULL";
+    }
+    void displayFor(){
+        Node* temp = head;
+        cout<<"NULL <-> ";
+        while(temp != NULL){
+            cout<<temp->data<<" <-> ";
             temp = temp->next;
         }
-        cout<<"back_to_header";
+        cout<<"NULL";
     }
+
+    
 };
 
 int main(){
     list l;
+
+    l.insert_End(1);
+    l.insert_End(2);
+    l.insert_End(3);
     l.insert_begining(100);
     l.insert_begining(200);
     l.insert_begining(300);
-    l.insert_begining(400);
-    // l.insert_End(200);
-    // l.insert_End(300);
-    l.display();
-
+    l.displayBack();
 }
