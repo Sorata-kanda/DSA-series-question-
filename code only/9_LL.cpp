@@ -584,7 +584,7 @@ Learn to traverse and print.
 //         cout<<"Middle element: "<< slow->data<<endl;
 //     }
 
-//     bool detector(){
+//     bool detector(){ //floyid's alogrithm
 //         if(head == NULL){
 //             cout<<"List is empty"<<endl;
 //             return false;
@@ -1116,7 +1116,7 @@ Learn to traverse and print.
 // }
 
 //============================ Doubly Linekd List ===========================================
-
+//!important (please read the delete functions carefully)
 class Node{
 public:
     int data;
@@ -1163,6 +1163,114 @@ public:
         head->prev = newNode;
         head = newNode;
     }
+
+    void deleteAtBeg(){
+        if(head == NULL){
+            cout<<"List is empty"<<endl;
+            return;
+        }else{
+            Node* temp = head;
+            if(head == tail){
+                head = tail = NULL;
+            }else{
+                head = head->next;
+                head->prev = NULL;
+            }
+        
+            delete temp; 
+        }
+    }
+
+    void deleteAtEnd(){
+        if(head == NULL){
+            cout<<"List is empty"<<endl;
+            return;
+        }else{
+            Node* temp = tail;
+            if(head == tail){
+                head = tail = NULL;
+            }else{
+                tail = tail->prev;
+                tail->next = NULL;
+                delete temp;
+            }
+        }
+    }
+
+    void deleteByVal(int val){
+        if(head == NULL){
+            cout<<"list is empty"<<endl;
+            return;
+        }
+        if(head->data == val){
+            Node* t1 = head;
+            head = head->next;
+            if(head != NULL){
+                head->prev = NULL;
+            }else{
+                tail = NULL;
+            }
+            delete t1;
+            return;
+        }
+        else{
+            Node* temp = head;
+            while(temp != NULL && temp->data != val){
+                temp = temp->next;
+            }
+            if(temp == NULL){
+                cout<<"Value not found"<<endl;
+                return;
+            }
+            if(temp->next != NULL){
+            temp->next->prev = temp->prev;
+            }
+            else{
+                tail = temp->prev;
+            }
+
+            temp->prev->next = temp->next;
+            delete temp;
+        }
+        
+    }
+
+        void deleteAtPos(int pos){
+
+        if(head == NULL || pos <= 0){
+            cout << "Invalid or empty list\n";
+            return;
+        }
+
+        if(pos == 1){
+            deleteAtBeg();
+            return;
+        }
+
+        Node* temp = head;
+        int count = 1;
+
+        while(temp != NULL && count < pos){
+            temp = temp->next;
+            count++;
+        }
+
+        if(temp == NULL){
+            cout << "Position out of range\n";
+            return;
+        }
+
+        if(temp == tail){
+            deleteAtEnd();
+            return;
+        }
+
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+
+        delete temp;
+    }
+    
     void displayBack(){
         Node* temp = tail;
         cout<<" NULL <- ";
@@ -1191,8 +1299,13 @@ int main(){
     l.insert_End(1);
     l.insert_End(2);
     l.insert_End(3);
-    l.insert_begining(100);
-    l.insert_begining(200);
-    l.insert_begining(300);
+    l.insert_beginning(100);
+    l.insert_beginning(200);
+    l.insert_beginning(300);
+    l.deleteByVal(3);
+    l.deleteAtPos(2);
+    // l.deleteAtBeg();
+    // l.deleteAtEnd();
     l.displayBack();
+    // l.displayFor();
 }
