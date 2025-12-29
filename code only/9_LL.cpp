@@ -1117,16 +1117,211 @@ Learn to traverse and print.
 
 //============================ Doubly Linekd List ===========================================
 //!important (please read the delete functions carefully)
+// class Node{
+// public:
+//     int data;
+//     Node* next;
+//     Node* prev;
+
+//     Node(int val){
+//         data = val;
+//         next = NULL;
+//         prev = NULL;
+//     }
+// };
+
+// class list{
+//     Node* head;
+//     Node* tail;
+// public:
+//     list(){
+//         head = tail = NULL;
+//     }
+
+//     void insert_End(int val){
+//         Node* newNode = new Node(val);
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }
+        
+//         tail->next = newNode;
+//         newNode->prev = tail;
+//         tail = newNode;
+
+//     }
+
+//     void insert_beginning(int val){
+//         Node* newNode = new Node(val);
+
+//         if(head == NULL){
+//             head = tail = newNode;
+//             return;
+//         }
+
+//         newNode->next = head;
+//         head->prev = newNode;
+//         head = newNode;
+//     }
+
+//     void deleteAtBeg(){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }else{
+//             Node* temp = head;
+//             if(head == tail){
+//                 head = tail = NULL;
+//             }else{
+//                 head = head->next;
+//                 head->prev = NULL;
+//             }
+        
+//             delete temp; 
+//         }
+//     }
+
+//     void deleteAtEnd(){
+//         if(head == NULL){
+//             cout<<"List is empty"<<endl;
+//             return;
+//         }else{
+//             Node* temp = tail;
+//             if(head == tail){
+//                 head = tail = NULL;
+//             }else{
+//                 tail = tail->prev;
+//                 tail->next = NULL;
+//                 delete temp;
+//             }
+//         }
+//     }
+
+//     void deleteByVal(int val){
+//         if(head == NULL){
+//             cout<<"list is empty"<<endl;
+//             return;
+//         }
+//         if(head->data == val){
+//             Node* t1 = head;
+//             head = head->next;
+//             if(head != NULL){
+//                 head->prev = NULL;
+//             }else{
+//                 tail = NULL;
+//             }
+//             delete t1;
+//             return;
+//         }
+//         else{
+//             Node* temp = head;
+//             while(temp != NULL && temp->data != val){
+//                 temp = temp->next;
+//             }
+//             if(temp == NULL){
+//                 cout<<"Value not found"<<endl;
+//                 return;
+//             }
+//             if(temp->next != NULL){
+//             temp->next->prev = temp->prev;
+//             }
+//             else{
+//                 tail = temp->prev;
+//             }
+
+//             temp->prev->next = temp->next;
+//             delete temp;
+//         }
+        
+//     }
+
+//         void deleteAtPos(int pos){
+
+//         if(head == NULL || pos <= 0){
+//             cout << "Invalid or empty list\n";
+//             return;
+//         }
+
+//         if(pos == 1){
+//             deleteAtBeg();
+//             return;
+//         }
+
+//         Node* temp = head;
+//         int count = 1;
+
+//         while(temp != NULL && count < pos){
+//             temp = temp->next;
+//             count++;
+//         }
+
+//         if(temp == NULL){
+//             cout << "Position out of range\n";
+//             return;
+//         }
+
+//         if(temp == tail){
+//             deleteAtEnd();
+//             return;
+//         }
+
+//         temp->prev->next = temp->next;
+//         temp->next->prev = temp->prev;
+
+//         delete temp;
+//     }
+    
+//     void displayBack(){
+//         Node* temp = tail;
+//         cout<<" NULL <- ";
+//         while(temp != NULL){
+//             cout<<temp->data<<" <- ";
+//             temp = temp -> prev;
+//         }
+//         cout<<"NULL";
+//     }
+//     void displayFor(){
+//         Node* temp = head;
+//         cout<<"NULL <-> ";
+//         while(temp != NULL){
+//             cout<<temp->data<<" <-> ";
+//             temp = temp->next;
+//         }
+//         cout<<"NULL";
+//     }
+
+    
+// };
+
+// int main(){
+//     list l;
+
+//     l.insert_End(1);
+//     l.insert_End(2);
+//     l.insert_End(3);
+//     l.insert_beginning(100);
+//     l.insert_beginning(200);
+//     l.insert_beginning(300);
+//     l.deleteByVal(3);
+//     l.deleteAtPos(2);
+//     // l.deleteAtBeg();
+//     // l.deleteAtEnd();
+//     l.displayBack();
+//     // l.displayFor();
+// }
+
+
+
+
+//============================= Loop delete detector ===============================
+
 class Node{
 public:
     int data;
     Node* next;
-    Node* prev;
-
     Node(int val){
         data = val;
         next = NULL;
-        prev = NULL;
     }
 };
 
@@ -1144,168 +1339,73 @@ public:
             head = tail = newNode;
             return;
         }
-        
         tail->next = newNode;
-        newNode->prev = tail;
         tail = newNode;
-
+        tail->next = head;
     }
 
-    void insert_beginning(int val){
-        Node* newNode = new Node(val);
+    void detectLoop(){
+        Node* slow = head;
+        Node* fast = head;
+        while(fast != NULL && fast->next != NULL){
+            slow = slow->next;
+            fast = fast->next->next;
 
-        if(head == NULL){
-            head = tail = newNode;
-            return;
-        }
-
-        newNode->next = head;
-        head->prev = newNode;
-        head = newNode;
-    }
-
-    void deleteAtBeg(){
-        if(head == NULL){
-            cout<<"List is empty"<<endl;
-            return;
-        }else{
-            Node* temp = head;
-            if(head == tail){
-                head = tail = NULL;
-            }else{
-                head = head->next;
-                head->prev = NULL;
-            }
-        
-            delete temp; 
-        }
-    }
-
-    void deleteAtEnd(){
-        if(head == NULL){
-            cout<<"List is empty"<<endl;
-            return;
-        }else{
-            Node* temp = tail;
-            if(head == tail){
-                head = tail = NULL;
-            }else{
-                tail = tail->prev;
-                tail->next = NULL;
-                delete temp;
-            }
-        }
-    }
-
-    void deleteByVal(int val){
-        if(head == NULL){
-            cout<<"list is empty"<<endl;
-            return;
-        }
-        if(head->data == val){
-            Node* t1 = head;
-            head = head->next;
-            if(head != NULL){
-                head->prev = NULL;
-            }else{
-                tail = NULL;
-            }
-            delete t1;
-            return;
-        }
-        else{
-            Node* temp = head;
-            while(temp != NULL && temp->data != val){
-                temp = temp->next;
-            }
-            if(temp == NULL){
-                cout<<"Value not found"<<endl;
+            if(slow == fast){
+                cout<<"Loop Detected"<<endl;
                 return;
             }
-            if(temp->next != NULL){
-            temp->next->prev = temp->prev;
-            }
-            else{
-                tail = temp->prev;
-            }
-
-            temp->prev->next = temp->next;
-            delete temp;
         }
         
+        if(slow != fast){
+            cout<<"No Loop detected"<<endl;
+            return;
+        }
     }
-
-        void deleteAtPos(int pos){
-
-        if(head == NULL || pos <= 0){
-            cout << "Invalid or empty list\n";
-            return;
-        }
-
-        if(pos == 1){
-            deleteAtBeg();
-            return;
-        }
-
+    void deletedetectLoop(){
+        if(head == NULL) return;
+        
+        // Simple approach for circular list: find tail and break connection
         Node* temp = head;
-        int count = 1;
-
-        while(temp != NULL && count < pos){
+        while(temp->next != head){
             temp = temp->next;
-            count++;
         }
-
-        if(temp == NULL){
-            cout << "Position out of range\n";
-            return;
-        }
-
-        if(temp == tail){
-            deleteAtEnd();
-            return;
-        }
-
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-
-        delete temp;
+        
+        // temp is now pointing to the last node (tail)
+        temp->next = NULL;  // Break the circular connection
+        tail = temp;        // Update tail pointer
+        cout<<"Loop deleted"<<endl;
     }
-    
-    void displayBack(){
-        Node* temp = tail;
-        cout<<" NULL <- ";
-        while(temp != NULL){
-            cout<<temp->data<<" <- ";
-            temp = temp -> prev;
-        }
-        cout<<"NULL";
-    }
-    void displayFor(){
-        Node* temp = head;
-        cout<<"NULL <-> ";
-        while(temp != NULL){
-            cout<<temp->data<<" <-> ";
+
+    void Circulardisplay(){
+        Node* temp = head->next;
+        cout<<head->data<<" -> ";
+        while(temp != head){
+            cout<<temp->data<<" -> ";
             temp = temp->next;
         }
         cout<<"NULL";
     }
-
-    
+    void display(){
+        Node* temp = head;
+        while(temp != NULL){
+            cout<<temp->data<<" -> ";
+            temp = temp->next;
+        }
+        cout<<"NULL"<<endl;
+    }
 };
 
 int main(){
     list l;
-
-    l.insert_End(1);
-    l.insert_End(2);
-    l.insert_End(3);
-    l.insert_beginning(100);
-    l.insert_beginning(200);
-    l.insert_beginning(300);
-    l.deleteByVal(3);
-    l.deleteAtPos(2);
-    // l.deleteAtBeg();
-    // l.deleteAtEnd();
-    l.displayBack();
-    // l.displayFor();
+    l.insert_End(100);
+    l.insert_End(200);
+    l.insert_End(300);
+    l.insert_End(400);
+    l.insert_End(500);
+    l.insert_End(600);
+    l.detectLoop();
+    l.deletedetectLoop();
+    l.detectLoop();
+    l.display();
 }
