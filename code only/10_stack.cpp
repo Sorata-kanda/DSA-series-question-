@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include<string>
 using namespace std;
 
 
@@ -168,82 +168,200 @@ using namespace std;
 //=========================== Stack by linked list ===================================
 
 
-class Node{
-public:
-    int data;
-    Node* next;
-    Node(int val){
-        data = val;
-        next = NULL;
-    }
-};
+// class Node{
+// public:
+//     int data;
+//     Node* next;
+//     Node(int val){
+//         data = val;
+//         next = NULL;
+//     }
+// };
 
-class stack{
-    Node* top;
-public:
+// class stack{
+//     Node* top;
+// public:
 
-    stack(){
-        top = NULL;
-    }
+//     stack(){
+//         top = NULL;
+//     }
+
+//     ~stack(){
+//         while(!isEmpty()){
+//             pop_back();
+//         }
+//     }
 
 
-    bool isEmpty(){
-        return top == NULL;
-    }
+//     bool isEmpty(){
+//         return top == NULL;
+//     }
 
-    void push_back(int val){
-        Node* newNode = new Node(val);
-        newNode->next = top;
-        top = newNode;
-    }
+//     void push_back(int val){
+//         Node* newNode = new Node(val);
+//         newNode->next = top;
+//         top = newNode;
+//     }
 
-    void pop_back(){
-        if(isEmpty()){
-            cout<<"Stack is Underflow"<<endl;
-            return;
+//     void pop_back(){
+//         if(isEmpty()){
+//             cout<<"Stack is Underflow"<<endl;
+//             return;
+//         }
+//         Node* temp = top;
+//         cout<<"Popped data: "<<temp->data<<endl;
+//         top = top->next;
+//         delete temp;
+//     }
+
+//     void peek(){
+//         if(isEmpty()){
+//             cout<<"Stack is underflow"<<endl;
+//             return;
+//         }
+//         cout<<top->data<<endl;
+
+//     }
+
+//     void display(){
+//         if(isEmpty()){
+//             cout<<"Stack is underflow"<<endl;
+//             return;
+//         }
+//         Node* temp = top;
+//         while(temp != NULL){
+//             cout<<temp->data<<" -> ";
+//             temp = temp->next;
+//         }
+//         cout<<"NULL"<<endl;
+//     }
+// };
+
+
+// int main(){
+//     stack s;
+
+//     s.push_back(10);
+//     s.push_back(20);
+//     s.push_back(30);
+
+//     s.display();
+
+//     cout<<s.isEmpty()<<endl;
+
+//     s.pop_back();
+//     s.peek();
+//     s.display();
+// }
+
+
+
+//========================= Parenthesis Problem =======================================
+
+#include<stack>
+// bool isBal(string s){
+//     stack<char> st;
+//     for(char c : s){
+//         if(c == '(' || c == '{' || c == '['){
+//             st.push(c);
+//         }
+//         else if(c==')' || c == '}' || c == ']'){
+//             if(st.empty()) return false;
+
+//             char top = st.top();
+//             st.pop();
+
+//             if((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top!= '[')){
+//                 return false;
+//             }
+//         }
+//     }
+//     return st.empty();
+// }
+
+// int main(){
+//     string st;
+//     cout<<"Give string here: ";
+//     getline(cin,st);
+//     if(isBal(st)){
+//         cout<<"Balanced";
+//     }else{
+//         cout<<"Not Balanced";
+//     }
+// }
+
+//------------------------- revision of the question -----------------------------
+
+// bool Balancer(string str){
+//     stack<char> st;
+//     for(char c : str){
+//         if(c == '(' || c == '{'|| c == '['){
+//             st.push(c);
+//         }else if(c == ')' || c == '}' ||c == ']'){
+//             if(st.empty()) return false;
+            
+//             char top = st.top();
+//             st.pop();
+
+//             if((c == ')' && top != '(') || (c == '}' && top != '{') || (c == ']' && top != '[')){
+//                 return false;
+//             }
+//         }
+//     }
+//     return st.empty();
+// }
+
+// int main(){
+//     string str = "(a+b*(c-d))";
+//     if(Balancer(str)){
+//         cout<<"String "<<str<<" is Balanced";
+//     }else{
+//         cout<<"String "<<str<<" is not Balanced";
+
+//     }
+// }
+
+
+
+//========================= Infix to postfix conversion =============================
+
+int prec(char c){
+    if(c == '^') return 3;
+    if(c == '*'|| c == '/') return 2;
+    if(c == '+' || c == '-') return 1;
+    return 0;
+}
+
+string infixToPostfix(string s){
+    stack<char> st;
+    string result = "";
+    for(char c:s){
+        if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >='0' && c<='9')){
+            result += c;
+        }else if(c == '('|| c == '['|| c == '{'){
+            st.push(c);
+        }else if(c == ')'|| c == ']'|| c == '}'){
+            while(!st.empty() && st.top() != '('){
+                result += st.top();
+                st.pop();
+            }
+            st.pop();
+        }else{
+            while(!st.empty() && prec(st.top())>= prec(c)){
+                result += st.top();
+                st.pop();
+            }
+            st.push(c);
         }
-        Node* temp = top;
-        cout<<"Popped data: "<<temp->data<<endl;
-        top = top->next;
-        delete temp;
     }
-
-    void peek(){
-        if(isEmpty()){
-            cout<<"Stack is underflow"<<endl;
-            return;
-        }
-        cout<<top->data<<endl;
-
+    while(!st.empty()){
+        result += st.top();
+        st.pop();
     }
-
-    void display(){
-        if(isEmpty()){
-            cout<<"Stack is underflow"<<endl;
-            return;
-        }
-        Node* temp = top;
-        while(temp != NULL){
-            cout<<temp->data<<" -> ";
-            temp = temp->next;
-        }
-        cout<<"NULL"<<endl;
-    }
-};
-
+    return result;
+}
 
 int main(){
-    stack s;
-
-    s.push_back(10);
-    s.push_back(20);
-    s.push_back(30);
-
-    s.display();
-
-    cout<<s.isEmpty()<<endl;
-
-    s.pop_back();
-    s.peek();
-    s.display();
+    string s = "(A+B)*C";
+    cout<<infixToPostfix(s);
 }
