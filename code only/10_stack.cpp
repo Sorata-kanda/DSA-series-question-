@@ -1,5 +1,8 @@
 #include<iostream>
 #include<string>
+#include<cmath>
+#include<stack>
+
 using namespace std;
 
 
@@ -258,7 +261,6 @@ using namespace std;
 
 //========================= Parenthesis Problem =======================================
 
-#include<stack>
 // bool isBal(string s){
 //     stack<char> st;
 //     for(char c : s){
@@ -325,43 +327,79 @@ using namespace std;
 
 //========================= Infix to postfix conversion =============================
 
-int prec(char c){
-    if(c == '^') return 3;
-    if(c == '*'|| c == '/') return 2;
-    if(c == '+' || c == '-') return 1;
-    return 0;
-}
+// int prec(char c){
+//     if(c == '^') return 3;
+//     if(c == '*'|| c == '/') return 2;
+//     if(c == '+' || c == '-') return 1;
+//     return 0;
+// }
 
-string infixToPostfix(string s){
-    stack<char> st;
-    string result = "";
-    for(char c:s){
-        if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >='0' && c<='9')){
-            result += c;
-        }else if(c == '('|| c == '['|| c == '{'){
-            st.push(c);
-        }else if(c == ')'|| c == ']'|| c == '}'){
-            while(!st.empty() && st.top() != '('){
-                result += st.top();
-                st.pop();
-            }
-            st.pop();
+// string infixToPostfix(string s){
+//     stack<char> st;
+//     string result = "";
+//     for(char c:s){
+//         if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >='0' && c<='9')){
+//             result += c;
+//         }else if(c == '('|| c == '['|| c == '{'){
+//             st.push(c);
+//         }else if(c == ')'|| c == ']'|| c == '}'){
+//             while(!st.empty() && st.top() != '('){
+//                 result += st.top();
+//                 st.pop();
+//             }
+//             st.pop();
+//         }else{
+//             while(!st.empty() && prec(st.top())>= prec(c)){
+//                 result += st.top();
+//                 st.pop();
+//             }
+//             st.push(c);
+//         }
+//     }
+//     while(!st.empty()){
+//         result += st.top();
+//         st.pop();
+//     }
+//     return result;
+// }
+
+// int main(){
+//     string s = "(A+B)*C";
+//     cout<<infixToPostfix(s);
+// }
+
+
+
+//=============================== Postfix expression ===========================
+
+int postfix(string s){
+    stack<int> st;
+    
+    for(char c : s){
+        if(isdigit(c)){
+            st.push(c-'0');
         }else{
-            while(!st.empty() && prec(st.top())>= prec(c)){
-                result += st.top();
-                st.pop();
+            int a = st.top();
+            st.pop();
+            int b = st.top();
+            st.pop();
+            
+            int res;
+            switch(c){
+                case '+': res = b+a; break;
+                case '-': res = b-a; break;
+                case '*': res = b*a; break;
+                case '/': res = b/a; break;
+                case '^': res = pow(b,a); break;
             }
-            st.push(c);
+            st.push(res);
         }
     }
-    while(!st.empty()){
-        result += st.top();
-        st.pop();
-    }
-    return result;
+
+    return st.top();
 }
 
 int main(){
-    string s = "(A+B)*C";
-    cout<<infixToPostfix(s);
+    string exp = "23*54*+9-";
+    cout<<postfix(exp);
 }
