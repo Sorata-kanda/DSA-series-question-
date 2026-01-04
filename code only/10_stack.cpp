@@ -372,125 +372,34 @@ using namespace std;
 
 //=============================== Postfix expression ===========================
 
-// int postfix(string s){
-//     stack<int> st;
+int postfix(string s){
+    stack<int> st;
     
-//     for(char c : s){
-//         if(isdigit(c)){
-//             st.push(c-'0');
-//         }else{
-//             int a = st.top();
-//             st.pop();
-//             int b = st.top();
-//             st.pop();
+    for(char c : s){
+        if(isdigit(c)){
+            st.push(c-'0');
+        }else{
+            int a = st.top();
+            st.pop();
+            int b = st.top();
+            st.pop();
             
-//             int res;
-//             switch(c){
-//                 case '+': res = b+a; break;
-//                 case '-': res = b-a; break;
-//                 case '*': res = b*a; break;
-//                 case '/': res = b/a; break;
-//                 case '^': res = pow(b,a); break;
-//             }
-//             st.push(res);
-//         }
-//     }
-
-//     return st.top();
-// }
-
-// int main(){
-//     string exp = "23*54*+9-";
-//     cout<<postfix(exp);
-// }
-
-
-//================================== Priority Queue ===========================
-
-class priorityQueue{
-    int *arr;
-    int size;
-    int n;
-
-public:
-    priorityQueue(int s){
-        size = s;
-        arr = new int[size];
-        n = 0;
-    }
-
-    ~priorityQueue(){
-        delete[] arr;
-    }
-
-    bool isEmpty(){
-        return n == 0;
-    }
-    bool isFull(){  
-        return n==size;
-    }
-
-    void enqueue(int val){
-        if(isFull()){
-            cout << "Priority Queue Overflow\n";
-            return;
+            int res;
+            switch(c){
+                case '+': res = b+a; break;
+                case '-': res = b-a; break;
+                case '*': res = b*a; break;
+                case '/': res = b/a; break;
+                case '^': res = pow(b,a); break;
+            }
+            st.push(res);
         }
-
-        int i = n-1;
-        while(i>=0 && arr[i]>val){
-            arr[i+1] = arr[i];
-            i--;
-        }
-
-        arr[i+1] = val;
-        n++;
     }
 
-    void dequeue(){
-        if(isEmpty()){
-            cout << "Priority Queue Underflow\n";
-            return;
-        }
-
-        cout << "Removed (highest priority): " << arr[n-1] << endl;
-        n--;
-    }
-
-    void peek(){
-        if(isEmpty()){
-            cout << "Priority Queue Empty\n";
-            return;
-        }
-
-        cout << "Highest Priority Element: " << arr[n-1] << endl;
-    
-    }
-
-    void display(){
-        if(isEmpty()){
-            cout << "Priority Queue Empty\n";
-            return;
-        }
-
-        for(int i=0; i<n; i++){
-            cout<<arr[i]<<" -> ";
-        }
-        cout<<endl;
-    }
-};
+    return st.top();
+}
 
 int main(){
-    priorityQueue pq(10);
-
-    pq.enqueue(30);
-    pq.enqueue(10);
-    pq.enqueue(50);
-    pq.enqueue(40);
-
-    pq.display();
-
-    pq.peek();
-
-    pq.dequeue();
-    pq.display();
+    string exp = "23*54*+9-";
+    cout<<postfix(exp);
 }
