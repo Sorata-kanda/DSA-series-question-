@@ -76,105 +76,171 @@ using namespace std;
     //    / \   /
     //   4  7  13
 
-// class Node{
-// public:
-//     int data;
-//     Node* left;
-//     Node* right;
-//     Node(int val){
-//         data = val;
-//         left = right = NULL;
-//     }
-// };
+class Node{
+public:
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val){
+        data = val;
+        left = right = NULL;
+    }
+};
 
-// Node* insert(Node* root, int val){    //O(log n)
-//     if(root == NULL){
-//         return new Node(val);
-//     }
+Node* insert(Node* root, int val){    //O(log n)
+    if(root == NULL){
+        return new Node(val);
+    }
 
-//     if(val<root->data){
-//         root->left = insert(root->left,val);
-//     }else if(val>root->data){
-//         root->right = insert(root->right,val);
-//     }
-//     return root;
+    if(val<root->data){
+        root->left = insert(root->left,val);
+    }else if(val>root->data){
+        root->right = insert(root->right,val);
+    }
+    return root;
 
-// }
+}
 
-// bool search(Node* root, int key){     //O(log n)
-//     if(root == NULL){
-//         return false;
-//     }
+bool search(Node* root, int key){     //O(log n)
+    if(root == NULL){
+        return false;
+    }
 
-//     if(root->data == key) return true;
+    if(root->data == key) return true;
 
-//     if(key<root->data){
-//         return search(root->left,key);
-//     }
-//     return search(root->right,key);
-// }
-// Node* inorderSuccessor(Node* root){
-//     Node* curr = root;
-//     while(curr && curr->left != NULL)
-//         curr = curr->left;
-//     return curr;
-// }
-// Node* deleteNode(Node* root, int key){
-//     if(root == NULL){
-//         return root;
-//     }
+    if(key<root->data){
+        return search(root->left,key);
+    }
+    return search(root->right,key);
+}
+Node* inorderSuccessor(Node* root){
+    Node* curr = root;
+    while(curr && curr->left != NULL)
+        curr = curr->left;
+    return curr;
+}
+Node* deleteNode(Node* root, int key){
+    if(root == NULL){
+        return root;
+    }
 
-//     if(key<root->data){
-//         root->left = deleteNode(root->left,key);
-//     }else if(key>root->data){
-//         root->right = deleteNode(root->right,key);
-//     }
-//     else{
-//         if(root->left == NULL){
-//             Node* temp = root->right;
-//             delete root;
-//             return temp;
-//         }else if(root->right == NULL){
-//             Node* temp = root->left;
-//             delete root;
-//             return temp;
-//         }
-//         Node* temp = inorderSuccessor(root->right);
-//         root->data = temp->data;
-//         root->right = deleteNode(root->right, temp->data); 
-//     }
-//     return root;
-// }
+    if(key<root->data){
+        root->left = deleteNode(root->left,key);
+    }else if(key>root->data){
+        root->right = deleteNode(root->right,key);
+    }
+    else{
+        if(root->left == NULL){
+            Node* temp = root->right;
+            delete root;
+            return temp;
+        }else if(root->right == NULL){
+            Node* temp = root->left;
+            delete root;
+            return temp;
+        }
+        Node* temp = inorderSuccessor(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data); 
+    }
+    return root;
+}
+Node* findMin(Node* root){
+    if(root == NULL) return NULL;
 
-// void inorder(Node* root){           //O(n)
-//     if(root == NULL) return;
-//     inorder(root->left);
-//     cout<<root->data<<" ";
-//     inorder(root->right);
-// }
+    while(root->left != NULL)
+        root = root->left;
 
-// int main(){
-//     Node* root = NULL;
-//     int arr[] = {8,3,10,1,6,14,4,7,13};
-//     for(int x : arr){
-//         root = insert(root,x);
-//     }
+    return root;
+}
+Node* findMax(Node* root){
+    if(root == NULL) return NULL;
 
-//     cout<<"Inorder Sorted: ";
-//     inorder(root);
-//     cout<<endl;
-//     cout<<"Searching: 20 -> "<<(search(root,20) ? "Founf" : "Not Found")<<"\n";
+    while(root->right != NULL)
+        root = root->right;
 
-//     cout<<"Searching 7 -> "<<(search(root,7) ? "Found" : "Not Found")<<"\n";
+    return root;
+}
+Node* deleteMin(Node* root){
 
-//     cout << "Inorder before deletion: ";
-//     inorder(root);
+    if(root == NULL) return NULL;
 
-//     root = deleteNode(root, 6);
+    // When left child is NULL → this is min node
+    if(root->left == NULL){
+        Node* rightSub = root->right;
+        delete root;
+        return rightSub;
+    }
 
-//     cout << "\nInorder after deleting 6: ";
-//     inorder(root);
-// }
+    root->left = deleteMin(root->left);
+    return root;
+}
+Node* deleteMax(Node* root){
+
+    if(root == NULL) return NULL;
+
+    // Right child missing → this is max node
+    if(root->right == NULL){
+        Node* leftSub = root->left;
+        delete root;
+        return leftSub;
+    }
+
+    root->right = deleteMax(root->right);
+    return root;
+}
+Node* deleteOdd(Node* root){
+
+    if(root == NULL) return NULL;
+
+    root->left = deleteOdd(root->left);
+    root->right = deleteOdd(root->right);
+
+    if(root->data % 2 != 0){   // odd node
+        Node* child;
+
+        if(root->left != NULL) child = root->left;
+        else child = root->right;
+
+        delete root;
+        return child;  // replace odd node with its child
+    }
+
+    return root;
+}
+int countNodes(Node* root){
+    if(root == NULL) return 0;
+    return 1 + countNodes(root->left) + countNodes(root->right);
+}
+void inorder(Node* root){           //O(n)
+    if(root == NULL) return;
+    inorder(root->left);
+    cout<<root->data<<" ";
+    inorder(root->right);
+}
+
+int main(){
+    Node* root = NULL;
+    int arr[] = {8,3,10,1,6,14,4,7,13};
+    for(int x : arr){
+        root = insert(root,x);
+    }
+
+    cout<<"Inorder Sorted: ";
+    inorder(root);
+    cout<<endl;
+    cout<<"Searching: 20 -> "<<(search(root,20) ? "Founf" : "Not Found")<<"\n";
+
+    cout<<"Searching 7 -> "<<(search(root,7) ? "Found" : "Not Found")<<"\n";
+
+    cout << "Inorder before deletion: ";
+    inorder(root);
+
+    root = deleteNode(root, 6);
+
+    cout << "\nInorder after deleting 6: ";
+    inorder(root);
+}
 
 
 

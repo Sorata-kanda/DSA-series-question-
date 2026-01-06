@@ -2,16 +2,6 @@
 using namespace std;
 
 
-class Node{
-public:
-    int data;
-    Node* right;
-    Node* left;
-    Node(int val){
-        data = val;
-        right = left = NULL;
-    }
-};
 
 class MaxHeap{
 public:
